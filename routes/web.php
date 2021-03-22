@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\UserLessonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,8 @@ Route::get('/', [LessonController::class, 'index'])->name('lesson.index');
 Route::get('/test/{code}', [LessonController::class, 'show'])->name('lesson.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-  Route::get('/dashboard', function () {
-  	return view('dashboard');
-  })->name('dashboard');
+
+	Route::put('/test', [LessonController::class, 'addUser'])->name('lesson.add.user');
+  Route::get('/dashboard', [UserLessonController::class, 'index'])->name('dashboard');
 
 });
