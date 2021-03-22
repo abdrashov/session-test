@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'user_id');
+    }
 }
