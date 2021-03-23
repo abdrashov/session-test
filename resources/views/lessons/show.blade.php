@@ -29,7 +29,7 @@
       </dd>
     </div>
     <div class="py-2 text-right text-sm text-gray-500">
-      Правильный ответ на вопрос 'А'
+      Правильный ответ на вопрос А
     </div>
   </x-slot>
   <div class="py-12">
