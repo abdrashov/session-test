@@ -64,14 +64,9 @@
                           </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <form action="{{ route('lesson.add.user') }}" method="post">
-                            @method('PUT')
-                            @csrf
-                            <input name="id" type="hidden" value="{{ $rating->id }}">
-                            <button class="text-indigo-600 hover:text-indigo-900">
-                              Сдать
-                            </button>
-                          </form>
+                          <a href="{{ route('online.test', $rating->code) }}" class="text-indigo-600 hover:text-indigo-900">
+                            Сдать
+                          </a>
                         </td>
                       </tr>
                     @endforeach
