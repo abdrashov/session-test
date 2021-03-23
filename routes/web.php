@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\LessonController;
-use App\Http\Controllers\UserLessonController;
+use App\Http\Controllers\User\OnlineTestController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\OnlineTest;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ Route::get('/', [LessonController::class, 'index'])->name('lesson.index');
 Route::get('/test/{code}', [LessonController::class, 'show'])->name('lesson.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
 	Route::put('/test', [LessonController::class, 'addUser'])->name('lesson.add.user');
-  Route::get('/dashboard', [UserLessonController::class, 'index'])->name('dashboard');
+  Route::get('/dashboard', [OnlineTestController::class, 'index'])->name('dashboard');
+	Route::get('/dashboard/{code}', OnlineTest::class)->name('dashboard.test');
 
 });
