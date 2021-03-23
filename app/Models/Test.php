@@ -12,4 +12,34 @@ class Test extends Model
   protected $fillable = [
   	'rating_id', 'question_id', 'answer1_id', 'answer2_id', 'answer3_id', 'answer4_id', 'answer5_id', 'right_answer_id', 'user_answer_id', 'spent_time'
  	];
+
+ 	public function question()
+ 	{
+ 		return $this->hasOne(Question::class, 'id', 'question_id');
+ 	}
+
+ 	public function answer1()
+ 	{
+ 		return $this->hasOne(Answer::class, 'id', 'answer1_id');
+ 	}
+
+ 	public function answer2()
+ 	{
+ 		return $this->hasOne(Answer::class, 'id', 'answer2_id');
+ 	}
+
+ 	public function answer3()
+ 	{
+ 		return $this->hasOne(Answer::class, 'id', 'answer3_id');
+ 	}
+
+ 	public function answer4()
+ 	{
+ 		return $this->hasOne(Answer::class, 'id', 'answer4_id');
+ 	}
+
+ 	public function answer5()
+ 	{
+ 		return $this->hasOne(Answer::class, 'id', 'answer5_id');
+ 	}
 }
