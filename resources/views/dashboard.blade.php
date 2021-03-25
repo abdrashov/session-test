@@ -64,8 +64,8 @@
                           </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <a href="{{ route('online.test', $rating->code) }}" class="text-indigo-600 hover:text-indigo-900">
-                            Сдать
+                          <a href="{{ route( ($rating->status == 1) ? 'dashboard.test' : 'dashboard.result', $rating->code) }}" class="text-indigo-600 hover:text-indigo-900">
+                            {{ ($rating->status == 1) ? 'Сдать' : 'Резултать' }} 
                           </a>
                         </td>
                       </tr>
