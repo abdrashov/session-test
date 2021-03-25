@@ -21,6 +21,12 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
+        <div wire:offline class="absolute top-0 w-full">
+            <div class="bg-red-100 text-red-900 rounded-lg shadow-md p-4 m-4">
+              Ой! Произошло что-то ужасное. Проверьте ваше интернет-соединение!
+            </div>
+        </div>
+
         <div class="min-h-screen bg-gray-100">
             @auth
               @livewire('navigation-menu')
