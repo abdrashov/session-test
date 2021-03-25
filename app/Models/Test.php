@@ -42,4 +42,26 @@ class Test extends Model
  	{
  		return $this->hasOne(Answer::class, 'id', 'answer5_id');
  	}
+
+ 	public function rightAnswerId()
+ 	{
+ 		return $this->hasOne(Answer::class, 'id', 'right_answer_id');
+ 	}
+
+ 	public function userAnswerId()
+ 	{
+ 		return $this->hasOne(Answer::class, 'id', 'user_answer_id');
+ 	}
+
+ 	public function getClassAndRightAnswerOrWrongAnswer($answer_id){
+ 		if( $answer_id == $this->user_answer_id && $this->user_answer_id == $this->right_answer_id )
+ 			return 'bg-green-200';
+ 		else if( $answer_id != $this->user_answer_id && $answer_id == $this->right_answer_id )
+ 			return 'bg-green-200';
+ 		else if( $answer_id == $this->user_answer_id && $answer_id != $this->right_answer_id )
+ 			return 'bg-red-200';
+ 		else
+ 			return '';
+ 	}
+ 	
 }
