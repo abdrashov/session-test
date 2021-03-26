@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\User\OnlineTestController;
-use App\Http\Livewire\TestOnline;
-use App\Http\Livewire\TestResult;
+use App\Http\Livewire\User\TestOnline;
+use App\Http\Livewire\User\TestResult;
+use App\Http\Livewire\User\UserTest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,8 @@ Route::get('/test/{code}', [LessonController::class, 'show'])->name('lesson.show
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::put('/test', [LessonController::class, 'addUser'])->name('lesson.add.user');
-  Route::get('/dashboard', [OnlineTestController::class, 'index'])->name('dashboard');
-	Route::get('/dashboard/{code}', TestOnline::class)->name('dashboard.test');
-	Route::get('/dashboard/{code}/result', TestResult::class)->name('dashboard.result');
+  Route::get('/dashboard', UserTest::class)->name('dashboard');
+	Route::get('/dashboard/{code}', TestOnline::class)->name('user.online.test');
+	Route::get('/dashboard/{code}/result', TestResult::class)->name('user.result.test');
 
 });
