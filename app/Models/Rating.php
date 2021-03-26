@@ -26,21 +26,21 @@ class Rating extends Model
     return $this->hasMany(Test::class);
   }
 
-  public function getSumSpentTime()
+  public function getSumSpentTime():int
   {
     $time = 0;
     foreach( $this->tests()->select('spent_time')->get() as $test ){
       $time += $test->spent_time;
     }
-    return $time;
+    return round($time/60);
   }
 
-  public function getSumRightAnswer()
+  public function getSumRightAnswer():int
   {
     return $this->tests()->whereColumn('user_answer_id', 'right_answer_id')->select('user_answer_id', 'right_answer_id')->count();
   }
 
-  public function getSumWrongAnswer()
+  public function getSumWrongAnswer():int
   {
     return $this->tests()->whereColumn('user_answer_id', 'NOT LIKE', 'right_answer_id')->select('user_answer_id', 'right_answer_id')->count();
   }
