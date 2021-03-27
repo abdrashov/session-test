@@ -29,7 +29,7 @@ class TestOnline extends Component
 								    ->first();
     if( empty( $this->rating->tests->whereNull('user_answer_id')->first() ) ){
       $this->rating->update(['status' => false]);
-      return redirect()->route('user.test');
+      return redirect()->route('dashboard');
     }
   }
   
