@@ -6,13 +6,18 @@ use Livewire\Component;
 
 class UserTest extends Component
 {
-	public $confirmUserDeletion;
-	public $confirmingUserDeletion;
+  public $model;
+
+  protected $listeners = ['confirmingUserDeletion' => 'model'];
+
+  public function model()
+  {
+  	$this->model = true;
+  }
 
   public function mount()
   {
-  	$this->confirmUserDeletion = true;
-  	$this->confirmingUserDeletion = true;
+  	$this->emit('userDelete');
   }
 
   public function render()
