@@ -1,12 +1,47 @@
-<x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Мои тесты') }}
-    </h2>
+  <x-slot name="header">
+    <div class="flex justify-between">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Мои тесты') }}
+      </h2>
+    </div>
   </x-slot>
 
   <div class="py-12"> 
   	<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+<form>
+  <x-jet-button wire:click="$toggle('modal')" wire:loading.attr="disabled">
+    Добавить дисциплину
+  </x-jet-button>
       
+  <x-jet-dialog-modal wire:model="modal">
+    <x-slot name="title">
+      Добавить дисциплину
+    </x-slot>
+
+    <x-slot name="content">
+        <div class="mb-2">
+          <x-jet-label for="code" value="{{ __('Код') }}" />
+          <x-jet-input wire:model="code" id="code" class="block mt-1 w-full" type="text" required {{ $code ? 'disabled' : ''}}/>
+          <x-jet-input-error for="code" class="mt-2" />
+        </div>
+        <div>
+          <x-jet-label for="title" value="{{ __('Дисциплина') }}" />
+          <x-jet-input wire:model="title" id="title" class="block mt-1 w-full" type="text" required autofocus/>
+          <x-jet-input-error for="title" class="mt-2" />
+        </div>
+    </x-slot>
+
+    <x-slot name="footer">
+      <x-jet-secondary-button wire:click="$toggle('modal')" wire:loading.attr="disabled">
+        Отмена
+      </x-jet-secondary-button>
+
+      <x-jet-button class="ml-2" wire:click="store" type="button" wire:loading.attr="disabled">
+        Добавить
+      </x-jet-button>
+    </x-slot>
+  </x-jet-dialog-modal>
+</form>  
       <div class="overflow-hidden sm:rounded-lg">
         <div class="flex flex-col">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
