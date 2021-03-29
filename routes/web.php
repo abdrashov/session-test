@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::prefix('dashboard')->group(function(){
 	  Route::get('', UserTest::class)->name('dashboard');
 		Route::get('/lesson', UserLesson::class)->name('user.lesson');
-		Route::get('/lesson/create', UserLessonCreate::class)->name('user.lesson.create');
+		Route::get('/lesson/create/{id}', UserLessonCreate::class)->name('user.lesson.create');
 		Route::get('/{code}', TestOnline::class)->name('user.online.test');
 		Route::get('/{code}/result', TestResult::class)->name('user.result.test');
 	});
