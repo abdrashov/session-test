@@ -8,10 +8,11 @@ use Livewire\Component;
 class UserLesson extends Component
 {
   public $modal = false;
+  public $modalTest = false;
   public $title;
   public $code;
 
-  protected $listeners = ['modal' => 'openModal'];
+  protected $listeners = ['modal' => 'openModal', 'modalTest' => 'openModal'];
 
   protected $rules = [
     'title' => 'required|unique:lessons',
@@ -20,10 +21,9 @@ class UserLesson extends Component
 
   public function openModal()
   {
-  	if( $this->modal )
-  		$this->modal = true;
-  	else
-  		$this->modal = false;
+  	$this->modal
+      ? 'false'
+      : 'true';
   }
 
   public function translitTitleOnCode($title) {
@@ -46,7 +46,9 @@ class UserLesson extends Component
 
   public function render()
   {
-    return view('livewire.user.user-lesson');
+    return view('livewire.user.user-lesson', [
+      'lessons' => auth()->user()->lessons()->with('questions')->get(),
+    ]);
   }
 
   public function store()
