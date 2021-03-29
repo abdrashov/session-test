@@ -10,6 +10,7 @@ class Lesson extends Model
   use HasFactory;
 
   protected $fillable = ['user_id', 'title', 'code'];
+  
   public function questions()
   {
   	return $this->hasMany(Question::class);
