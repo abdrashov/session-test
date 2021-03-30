@@ -10,7 +10,6 @@ class UserLessonCreate extends Component
   public $lesson;
 	public $questions;
   public $answers;
-  private $lesson_id;
 
   protected $rules = [
     'questions.title' => 'required|string',
@@ -23,13 +22,19 @@ class UserLessonCreate extends Component
 
   public function mount($id)
   {
-    $this->lesson_id = $id;
+    $this->lesson = auth()->user()->lessons()->find($id);
+  }
+
+  public function dehydrate()
+  {
+    $this->lesson = auth()->user()->lessons()->find($this->lesson->id);
   }
 
   public function render()
   {
-    $this->lesson = auth()->user()->lessons()->with('questions.answers')->find($this->lesson_id);
-    return view('livewire.user.user-lesson-create');
+    return view('livewire.user.user-lesson-create', [
+      'lesson_count' => $this->lesson->questions->count(),
+    ]);
   }
 
   public function save()
