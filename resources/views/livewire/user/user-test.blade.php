@@ -7,8 +7,6 @@
 
   <div class="py-12"> 
   	<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      
-
 
       <div class="overflow-hidden sm:rounded-lg">
         <div class="flex flex-col">
@@ -39,7 +37,7 @@
 	                  </tr>
 	                </thead>
 	                <tbody class="bg-white divide-y divide-gray-200">
-                   {{--  @foreach($ratings as $rating)
+                    @foreach($ratings as $rating)
                       <tr>
                         <td class="px-4 py-4">
                           <div class="text-sm font-medium text-gray-900">
@@ -63,16 +61,16 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                           <div class="text-sm text-gray-900">
-                            {{ $rating->created_at->format('d.m.Y') }}
+                            {{ $rating->created_at->format('d/m/Y') }}
                           </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <a href="{{ route( ($rating->status == 1) ? 'dashboard.test' : 'dashboard.result', $rating->code) }}" class="text-indigo-600 hover:text-indigo-900">
+                          <a href="{{ route( ($rating->status == 1) ? 'user.online.test' : 'user.result.test', $rating->code) }}" class="text-indigo-600 hover:text-indigo-900">
                             {{ ($rating->status == 1) ? 'Сдать' : 'Резултать' }} 
                           </a>
                         </td>
                       </tr>
-                    @endforeach --}}
+                    @endforeach
 
 	                  <!-- More items... -->
 	                </tbody>
@@ -84,32 +82,5 @@
       </div>
     </div>
   </div>
-
-  <div class="mt-5">
-      <x-jet-danger-button wire:click="confirmUserDeletion" wire:loading.attr="disabled">
-          {{ __('Delete Account') }}
-      </x-jet-danger-button>
-  </div>
-
-  <!-- Delete User Confirmation Modal -->
- <x-jet-confirmation-modal wire:model="confirmingUserDeletion">
-    <x-slot name="title">
-        Delete Account
-    </x-slot>
-
-    <x-slot name="content">
-        Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted.
-    </x-slot>
-
-    <x-slot name="footer">
-        <x-jet-secondary-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
-            Nevermind
-        </x-jet-secondary-button>
-
-        <x-jet-danger-button class="ml-2" wire:click="deleteUser" wire:loading.attr="disabled">
-            Delete Account
-        </x-jet-danger-button>
-    </x-slot>
-</x-jet-confirmation-modal>
 
 
