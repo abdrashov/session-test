@@ -21,20 +21,8 @@
 		    <dt class="text-sm font-medium text-gray-500">
 		      Оставшееся время 
 		    </dt>
-		    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-		    	{{ $time }}
-		    	<div wire:poll.60000ms="addTime">
-				    Current time: {{ time() }}
-					</div>
-
-		    </dd>
-		  </div>
-		  <div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
-		    <dt class="text-sm font-medium text-gray-500">
-		      Потрачено время 
-		    </dt>
-		    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-		    	{{ $test->spent_time }}
+		    <dd wire:poll.5000ms="addTime" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+		    	{{ time() - $time }}
 		    </dd>
 		  </div>
 		  <div class="py-2 mb-2 sm:grid sm:grid-cols-3 sm:gap-4">
