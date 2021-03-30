@@ -13,11 +13,17 @@ class Lesson extends Model
   
   public function questions()
   {
-  	return $this->hasMany(Question::class);
+    return $this->hasMany(Question::class);
   }
-
+  
   public function user()
   {
   	return $this->belongsTo(User::class);
   }
+
+  public function isStatus():bool
+  {
+    return $this->questions()->count() > 49;
+  }
+
 }
