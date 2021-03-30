@@ -43,7 +43,7 @@
           </div>
           <div class="border-t border-gray-200">
             @foreach( $question->answers as $key => $answer )
-              <p class="{{ ($answer->status == 0) ? 'bg-green-50' : '' }} p-4 text-sm text-gray-900">
+              <p class="{{ ($answer->status == 1) ? 'bg-green-50' : '' }} p-4 text-sm text-gray-900">
                 {{ range('A','Z')[$key].') '.$answer->title }}
               </p>
             @endforeach
