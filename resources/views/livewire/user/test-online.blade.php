@@ -14,15 +14,15 @@
 		      Оставшиеся вопросы
 		    </dt>
 		    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-		      {{ $test_count }}
+		      {{ $rating->tests()->whereNull('user_answer_id')->count() }}
 		    </dd>
 		  </div>
 		  <div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
 		    <dt class="text-sm font-medium text-gray-500">
 		      Оставшееся время 
 		    </dt>
-		    <dd wire:poll.5000ms="addTime" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-		    	{{ time() - $time }}
+		    <dd wire:poll.5000ms="updateTime" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+		    	{{ $time_left + (time() - $time) }}
 		    </dd>
 		  </div>
 		  <div class="py-2 mb-2 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -34,7 +34,7 @@
 		    </dd>
 		  </div>
 
-<form wire:submit.prevent="addAnswer({{ $test->id }})">
+<form wire:submit.prevent="updateAnswer({{ $test->id }})">
 	    <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-5"> 
 	      <div class="px-3 py-4 sm:px-6">
 	        <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -88,3 +88,4 @@
 </form>
 	  </div>
 	</div>
+	
