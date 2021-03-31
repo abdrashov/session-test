@@ -32,7 +32,7 @@ class Rating extends Model
     foreach( $this->tests()->select('spent_time')->get() as $test ){
       $time += $test->spent_time;
     }
-    return round($time/60);
+    return $time;
   }
 
   public function getSumRightAnswer():int
