@@ -13,6 +13,7 @@ class TestOnline extends Component
   public $test;
   public $answer_id;
   public $time;
+  public $time_left;
 
 	protected $rules = [
 		'answer_id' => 'required'
@@ -20,39 +21,36 @@ class TestOnline extends Component
 
   public function mount($code)
   {
-  	$this->time = time();
-    $this->rating = auth()
-								    ->user()
-								    ->ratings()
-								    ->with('tests', 'lesson')
-								    ->where('code', $code)
-								    ->first();
-    if( empty( $this->rating->tests->whereNull('user_answer_id')->first() ) ){
+    $this->rating = auth()->user()->ratings()->with('tests', 'lesson')->where('code', $code)->first();
+    $this->time = time();
+    $this->test = $this->rating->tests()->whereNull('user_answer_id')->first();
+
+    if( empty( $this->test ) ){
       $this->rating->update(['status' => false]);
       return redirect()->route('dashboard');
     }
+
+    $this->time_left = $this->rating->getSumSpentTime();
+    
   }
   
   public function render()
   {
-		$this->test = $this->rating->tests->whereNull('user_answer_id')->first();
-    return view('livewire.user.test-online', [
-			'test' => $this->test,
-			'test_count' => $this->rating->tests->whereNull('user_answer_id')->count(),
-		]);
+    return view('livewire.user.test-online');
 	}
 
-  public function addAnswer($test_id)
+  public function updateAnswer($test_id)
   {
   	$this->validate();
-  	$this->addTime();
+  	$this->updateTime();
   	@$this->test->update(['user_answer_id' => $this->answer_id]);
-  	$this->time = time();
+    $this->time = time();
 	}
 
-  public function addTime()
+  public function updateTime()
   {
   	$this->test->update(['spent_time' => (time() - $this->time)]);
 	}
+
 
 }
