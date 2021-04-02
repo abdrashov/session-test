@@ -1,10 +1,11 @@
 AddDefaultCharset utf8
 
-DirectoryIndex index.php
-php_flag last_modified 1
-
+RewriteEngine on
 <IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteCond %{REQUEST_URI} !^public
-    RewriteRule ^(.*)$ public/$1 [L]
+  RewriteEngine On
+  RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+AddType application/x-httpd-cgi .cgi .pl
+AddHandler php4-script .php4
+AddType application/x-httpd-php .php5
