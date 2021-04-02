@@ -33,7 +33,7 @@
 	      </dd>
 	    </div>
 	    <div class="py-2 text-right text-sm text-gray-500">
-	      Правильный ответ на вопрос А
+	      Правильный ответ А
 	    </div>
 	    <h3 class="font-semibold text-lg mb-2 sm:px-0 px-4 text-gray-800 leading-tight">
 	      {{ __('Добавить тест') }} 
