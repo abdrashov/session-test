@@ -28,9 +28,18 @@ class TestOnline extends Component
     
   }
   
-  public function render()
+  private function getTestOrRedirect()
   {
     $this->test = $this->rating->tests()->whereNull('user_answer_id')->first();
+    if( empty( $this->test ) ){
+      $this->rating->update(['status' => false]);
+      return redirect()->route('dashboard');
+    }
+  }
+  
+  public function render()
+  {
+    $this->getTestOrRedirect();
     return view('livewire.user.test-online');
 	}
 
@@ -46,14 +55,6 @@ class TestOnline extends Component
   {
   	$this->test->update(['spent_time' => (time() - $this->time)]);
 	}
-
-  private function updatedTest()
-  {
-    if( empty( $this->test ) ){
-      $this->rating->update(['status' => false]);
-      return redirect()->route('dashboard');
-    }
-  }
 
 
 }
