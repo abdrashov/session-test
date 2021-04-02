@@ -11,8 +11,6 @@ class LessonController extends Controller
 	public function index()
 	{
 		$lessons = Lesson::with('questions')->paginate(10);
-		if(!$lessons->first())
-			return abort(404);
 		return view('lessons.index', compact('lessons'));
 	}
 
