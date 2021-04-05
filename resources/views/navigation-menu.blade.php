@@ -151,11 +151,15 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('lesson.index') }}" :active="request()->routeIs('lesson.index')">
-                {{ __('Dashboard') }}
+                {{ __('Все тесты') }}
             </x-jet-responsive-nav-link>
 
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Мой тесты') }}
+                {{ __('Тесты') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('user.lesson') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Мои тесты') }}
             </x-jet-responsive-nav-link>
         </div>
 
