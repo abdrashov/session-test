@@ -6,7 +6,7 @@
 </x-slot>
 
 	<div class="pt-8 pb-12">
-	  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+	  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 	    <x-jet-validation-errors class="mb-3"/>
 	
 		  <div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -37,43 +37,43 @@
 <form wire:submit.prevent="updateAnswer({{ $test->id }})">
 	    <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-5"> 
 	      <div class="px-3 py-4 sm:px-6">
-	        <h3 class="text-lg leading-6 font-medium text-gray-900">
+	        <h3 class="break-all text-lg leading-6 font-medium text-gray-900">
 	          {{ $test->question->title }}
 	        </h3>
 	      </div>
 	      <div class="border-t border-b border-gray-200">
 
-		      <div class="px-4">
+		      <div class="px-4 flex items-center">
 		        <input id="answer{{ $test->answer1->id }}" type="radio" class="form-radio" name="test" wire:model.defer="answer_id" value="{{ $test->answer1->id }}">
-			      <label for="answer{{ $test->answer1->id }}" class="pl-2 inline-block py-4 text-sm text-gray-900">
+			      <label for="answer{{ $test->answer1->id }}" class="break-all pl-2 inline-block py-4 text-sm text-gray-900">
 		        	{{ $test->answer1->title }}
 			      </label>
 		      </div>
 
-		      <div class="px-4">
+		      <div class="px-4 flex items-center">
 		        <input id="answer{{ $test->answer2->id }}" type="radio" class="form-radio" name="test" wire:model.defer="answer_id" value="{{ $test->answer2->id }}">
-			      <label for="answer{{ $test->answer2->id }}" class="pl-2 inline-block py-4 text-sm text-gray-900">
+			      <label for="answer{{ $test->answer2->id }}" class="break-all pl-2 inline-block py-4 text-sm text-gray-900">
 		        	{{ $test->answer2->title }}
 			      </label>
 		      </div>
 
-		      <div class="px-4">
+		      <div class="px-4 flex items-center">
 		        <input id="answer{{ $test->answer3->id }}" type="radio" class="form-radio" name="test" wire:model.defer="answer_id" value="{{ $test->answer3->id }}">
-			      <label for="answer{{ $test->answer3->id }}" class="pl-2 inline-block py-4 text-sm text-gray-900">
+			      <label for="answer{{ $test->answer3->id }}" class="break-all pl-2 inline-block py-4 text-sm text-gray-900">
 		        	{{ $test->answer3->title }}
 			      </label>
 		      </div>
 
-		      <div class="px-4">
+		      <div class="px-4 flex items-center">
 		        <input id="answer{{ $test->answer4->id }}" type="radio" class="form-radio" name="test" wire:model.defer="answer_id" value="{{ $test->answer4->id }}">
-			      <label for="answer{{ $test->answer4->id }}" class="pl-2 inline-block py-4 text-sm text-gray-900">
+			      <label for="answer{{ $test->answer4->id }}" class="break-all pl-2 inline-block py-4 text-sm text-gray-900">
 		        	{{ $test->answer4->title }}
 			      </label>
 		      </div>
 
-		      <div class="px-4">
+		      <div class="px-4 flex items-center">
 		        <input id="answer{{ $test->answer5->id }}" type="radio" class="form-radio" name="test" wire:model.defer="answer_id" value="{{ $test->answer5->id }}">
-			      <label for="answer{{ $test->answer5->id }}" class="pl-2 inline-block py-4 text-sm text-gray-900">
+			      <label for="answer{{ $test->answer5->id }}" class="break-all pl-2 inline-block py-4 text-sm text-gray-900">
 		        	{{ $test->answer5->title }}
 			      </label>
 		      </div>
