@@ -6,7 +6,7 @@
 </x-slot>
 
 	<div class="pt-8 pb-12">
-	  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+	  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		  <div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
 		    <dt class="text-sm font-medium text-gray-500">
 		      Потрачено время 
