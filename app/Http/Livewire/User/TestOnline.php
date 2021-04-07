@@ -19,6 +19,8 @@ class TestOnline extends Component
 		'answer_id' => 'required'
 	];
 
+  protected $listeners = ['updateAnswer'];
+
   public function mount($code)
   {
     $this->rating = auth()->user()->ratings()->with('tests', 'lesson')->where('code', $code)->first();
@@ -43,7 +45,7 @@ class TestOnline extends Component
     return view('livewire.user.test-online');
 	}
 
-  public function updateAnswer($test_id)
+  public function updateAnswer()
   {
   	$this->validate();
   	$this->updateTime();
