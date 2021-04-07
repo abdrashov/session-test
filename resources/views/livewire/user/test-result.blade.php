@@ -32,7 +32,7 @@
 		    </dd>
 		  </div>
       @foreach( $rating->tests as $test )
-        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-5">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-5 break-all">
           <div class="px-3 py-4 sm:px-6">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
               <b>#{{ $loop->iteration }}</b> {{ $test->question->title }}
