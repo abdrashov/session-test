@@ -1,12 +1,10 @@
 <x-app-layout>
   
-  <x-header>
-    <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Dashboard') }}
-      </h2>
-    </x-slot>
-  </x-header>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Dashboard') }}
+    </h2>
+  </x-slot>
 
   <div class="py-12">
     
@@ -35,38 +33,38 @@
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($lessons as $lesson)
-                      <tr>
-                        <td class="px-4 py-4">
-                          <div class="text-sm font-medium text-gray-900">
-                            {{ (($lessons->perPage()*$lessons->currentPage())-$lessons->perPage())+$loop->iteration }}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm text-gray-900">
-                            {{ $lesson->title }}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            {{ $lesson->questions->count() }}
-                          </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <a href="{{ route('lesson.show' , $lesson->code) }}" class="text-indigo-600 hover:text-indigo-900">
-                            Посмотреть все вопросы
-                          </a>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <form action="{{ route('lesson.add.user') }}" method="post">
-                            @method('PUT')
-                            @csrf
-                            <input name="id" type="hidden" value="{{ $lesson->id }}">
-                            <button class="text-indigo-600 hover:text-indigo-900">
-                              Добавить себе
-                            </button>
-                          </form>
-                        </td>
-                      </tr>
+                    <tr>
+                      <td class="px-4 py-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          {{ (($lessons->perPage()*$lessons->currentPage())-$lessons->perPage())+$loop->iteration }}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">
+                          {{ $lesson->title }}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          {{ $lesson->questions->count() }}
+                        </span>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <a href="{{ route('lesson.show' , $lesson->code) }}" class="text-indigo-600 hover:text-indigo-900">
+                          Посмотреть все вопросы
+                        </a>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <form action="{{ route('lesson.add.user') }}" method="post">
+                          @method('PUT')
+                          @csrf
+                          <input name="id" type="hidden" value="{{ $lesson->id }}">
+                          <button class="text-indigo-600 hover:text-indigo-900">
+                            Добавить себе
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
                     @endforeach
 
                     <!-- More items... -->
