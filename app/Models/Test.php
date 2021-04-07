@@ -55,11 +55,11 @@ class Test extends Model
 
  	public function getClassAndRightAnswerOrWrongAnswer($answer_id){
  		if( $answer_id == $this->user_answer_id && $this->user_answer_id == $this->right_answer_id )
- 			return 'bg-green-200';
+ 			return 'bg-green-100 font-bold';
  		else if( $answer_id != $this->user_answer_id && $answer_id == $this->right_answer_id )
- 			return 'bg-green-200';
+ 			return 'bg-green-100';
  		else if( $answer_id == $this->user_answer_id && $answer_id != $this->right_answer_id )
- 			return 'bg-red-200';
+ 			return 'bg-red-100 font-bold';
  		else
  			return '';
  	}
