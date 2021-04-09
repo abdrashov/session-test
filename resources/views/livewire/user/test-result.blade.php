@@ -48,9 +48,6 @@
 			<div class="px-3 py-4 sm:px-6">
 				<h3 class="text-lg leading-6 font-medium text-gray-900">
 					<b>#{{ $loop->iteration }}</b> {{ $test->question->title }}
-					@if($loop->iteration == 5)
-						@dd($test)
-					@endif
 				</h3>
 			</div>
 			<div class="border-t border-gray-200">
