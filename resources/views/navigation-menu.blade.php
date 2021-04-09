@@ -158,7 +158,7 @@
                 {{ __('Тесты') }}
             </x-jet-responsive-nav-link>
 
-            <x-jet-responsive-nav-link href="{{ route('user.lesson') }}" :active="request()->routeIs('dashboard')">
+            <x-jet-responsive-nav-link href="{{ route('user.lesson') }}" :active="request()->routeIs('user.lesson')">
                 {{ __('Мои тесты') }}
             </x-jet-responsive-nav-link>
         </div>
