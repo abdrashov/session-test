@@ -9,7 +9,7 @@ class Lesson extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['user_id', 'title', 'code'];
+  protected $fillable = ['user_id', 'title', 'code', 'status'];
   
   public function questions()
   {
