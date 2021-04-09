@@ -22,9 +22,12 @@
 	                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 	                      Дисциплина
 	                    </th>
-	                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-	                      Вопросы
-	                    </th>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Вопросы
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Время 
+                      </th>
 	                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 	                      Статус
 	                    </th>
@@ -44,14 +47,19 @@
                             {{ (($ratings->perPage()*$ratings->currentPage())-$ratings->perPage())+$loop->iteration }}
                           </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4" width="350">
                           <div class="text-sm text-gray-900">
                             {{ $rating->lesson->title }}
                           </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            {{ $rating->tests->count() }}
+                            {{ $rating->test_count }}
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            {{ $rating->test_time }} мин
                           </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
