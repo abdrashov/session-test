@@ -42,7 +42,7 @@ class TestOnline extends Component
   
   private function checkTestTime()
   {
-    if( $this->timeLeft < 0 && !is_string($this->timeLeft) ){
+    if( $this->timeLeft <= 0, !is_int($this->timeLeft) ){
       $this->rating->tests()->whereNull('user_answer_id')->update([
         'user_answer_id' => 0,
         'spent_time' => 0,
