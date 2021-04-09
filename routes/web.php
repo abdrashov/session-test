@@ -6,8 +6,9 @@ use App\Http\Livewire\User\TestOnline;
 use App\Http\Livewire\User\TestResult;
 use App\Http\Livewire\User\UserTest;
 use App\Http\Livewire\User\UserLesson;
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\User\UserLessonCreate;
+use App\Http\Livewire\Lessons;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,10 @@ use App\Http\Livewire\User\UserLessonCreate;
 |
 */
 
-Route::get('/', [LessonController::class, 'index'])->name('lesson.index');
+Route::get('/', Lessons::class)->name('lesson.index');
 Route::get('/test/{code}', [LessonController::class, 'show'])->name('lesson.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-	Route::put('/test', [LessonController::class, 'addUser'])->name('lesson.add.user');
 	Route::prefix('dashboard')->group(function(){
 	  Route::get('', UserTest::class)->name('dashboard');
 		Route::get('/lesson', UserLesson::class)->name('user.lesson');
