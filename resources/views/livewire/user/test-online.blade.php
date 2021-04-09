@@ -24,7 +24,7 @@
 				Оставшееся время 
 			</dt>
 			<dd wire:poll.5000ms="updateTime" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-				{{ $time_left + (time() - $time) }}
+				{{ $timeLeft }} мин
 			</dd>
 		</div>
 		<div class="py-2 mb-2 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -36,7 +36,7 @@
 			</dd>
 		</div>
 
-		<form wire:submit.prevent="$emit('updateAnswer')">
+		<form wire:submit.prevent="updateAnswer">
 			<div class="bg-white shadow overflow-hidden sm:rounded-lg mb-5 break-all"> 
 				<div class="px-3 py-4 sm:px-6">
 					<h3 class="text-lg leading-6 font-medium text-gray-900">
