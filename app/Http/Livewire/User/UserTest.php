@@ -8,7 +8,7 @@ class UserTest extends Component
 {
   public function render()
   {
-    $ratings = auth()->user()->ratings()->paginate(15);
+    $ratings = auth()->user()->ratings()->orderByDesc('status')->orderByDesc('id')->get();
     return view('livewire.user.user-test', compact('ratings'));
   }
 }
