@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function ratings()
     {
-        return $this->hasMany(Rating::class, 'user_id')->orderByDesc('id');
+        return $this->hasMany(Rating::class, 'user_id');
     }
 
     public function lessons()
