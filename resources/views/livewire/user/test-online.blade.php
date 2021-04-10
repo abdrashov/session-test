@@ -11,27 +11,27 @@
 
 		<x-jet-validation-errors class="mb-3"/>
 
-		<div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
-			<dt class="text-sm font-medium text-gray-500">
+		<div class="grid grid-cols-3 gap-4">
+			<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
 				Оставшиеся вопросы
 			</dt>
-			<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+			<dd class="text-sm text-gray-900 sm:col-span-2">
 				{{ $rating->tests()->whereNull('user_answer_id')->count() }}
 			</dd>
 		</div>
-		<div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
-			<dt class="text-sm font-medium text-gray-500">
+		<div class="mt-3 grid grid-cols-3 gap-4">
+			<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
 				Оставшееся время 
 			</dt>
-			<dd wire:poll.5000ms="updateTime" class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+			<dd wire:poll.5000ms="updateTime" class="text-sm text-gray-900 sm:col-span-2">
 				{{ $timeLeft }} мин
 			</dd>
 		</div>
-		<div class="py-2 mb-2 sm:grid sm:grid-cols-3 sm:gap-4">
-			<dt class="text-sm font-medium text-gray-500">
+		<div class="mt-3 grid grid-cols-3 gap-4">
+			<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
 				Правильный ответ
 			</dt>
-			<dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+			<dd class="text-sm text-gray-900 sm:col-span-2">
 				{{ $rating->getSumRightAnswer() }}
 			</dd>
 		</div>

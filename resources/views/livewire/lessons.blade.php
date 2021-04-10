@@ -1,7 +1,7 @@
 <div>
 <x-slot name="header">
 	<h2 class="font-semibold text-xl text-gray-800 leading-tight">
-		{{ __('Dashboard') }}
+		{{ __('Дисциплины') }}
 	</h2>
 </x-slot>
 
@@ -87,12 +87,12 @@
 										</td>
 										<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 											<a href="{{ route('lesson.show' , $lesson->code) }}" class="text-indigo-600 hover:text-indigo-900">
-												Посмотреть все вопросы
+												Открыть все вопросы
 											</a>
 										</td>
 										<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
 											<x-jet-button wire:click="modalOpen({{ $lesson->id }}, '{{ $lesson->title }}')" wire:loading.attr="disabled">
-												Добавить дисциплину
+												Сдать пробный тест
 											</x-jet-button>
 										</td>
 									</tr>
