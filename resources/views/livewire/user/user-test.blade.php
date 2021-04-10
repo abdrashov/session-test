@@ -1,7 +1,7 @@
 
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Тесты') }}
+      {{ __('Онлайн тесты и результаты') }}
     </h2>
   </x-slot>
 
@@ -44,10 +44,10 @@
                       <tr>
                         <td class="px-4 py-4">
                           <div class="text-sm font-medium text-gray-900">
-                            {{ (($ratings->perPage()*$ratings->currentPage())-$ratings->perPage())+$loop->iteration }}
+                            {{ $loop->iteration }}
                           </div>
                         </td>
-                        <td class="px-6 py-4" width="350">
+                        <td class="px-6 py-4" width="400">
                           <div class="text-sm text-gray-900">
                             {{ $rating->lesson->title }}
                           </div>
