@@ -13,7 +13,7 @@
 					Потрачено время 
 				</dt>
 				<dd class="text-sm text-gray-900 sm:col-span-2">
-					{{ round($this->rating->getSumSpentTime()/60) }}мин
+					{{ ceil($this->rating->getSumSpentTime()/60) }}мин
 				</dd>
 			</div>
 			<div class="mt-3 grid grid-cols-3 gap-4">
