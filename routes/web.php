@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LessonController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\User\OnlineTestController;
 use App\Http\Livewire\User\TestOnline;
 use App\Http\Livewire\User\TestResult;
@@ -8,6 +8,7 @@ use App\Http\Livewire\User\UserTest;
 use App\Http\Livewire\User\UserLesson;
 use App\Http\Livewire\User\UserLessonCreate;
 use App\Http\Livewire\Lessons;
+use App\Http\Livewire\LessonShow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,14 +22,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Lessons::class)->name('lesson.index');
-Route::get('/test/{code}', [LessonController::class, 'show'])->name('lesson.show');
+
+Route::middleware('guest')->group(function () {
+	Route::get('/', function(){
+		return view('welcome');
+	})->name('/');
+	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
+	Route::get('/g/discipline/{code}', [MainController::class, 'show'])->name('g.lesson.show');
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+	Route::get('/disciplines', Lessons::class)->name('lesson.index');
+	Route::get('/discipline/{code}', LessonShow::class)->name('lesson.show');
 	Route::prefix('dashboard')->group(function(){
-	  Route::get('', UserTest::class)->name('dashboard');
-		Route::get('/lesson', UserLesson::class)->name('user.lesson');
-		Route::get('/lesson/create/{id}', UserLessonCreate::class)->name('user.lesson.create');
+		Route::get('', UserTest::class)->name('dashboard');
+		Route::get('/discipline', UserLesson::class)->name('user.lesson');
+		Route::get('/discipline/create/{id}', UserLessonCreate::class)->name('user.lesson.create');
 		Route::get('/{code}', TestOnline::class)->name('user.online.test');
 		Route::get('/{code}/result', TestResult::class)->name('user.result.test');
 	});
