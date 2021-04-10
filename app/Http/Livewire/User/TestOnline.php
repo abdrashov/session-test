@@ -42,20 +42,19 @@ class TestOnline extends Component
   
   private function checkTestTime()
   {
-    if( $this->timeLeft <= 0 && !is_int($this->timeLeft) ){
+    if( $this->timeLeft <= 0 && !is_int($this->timeLeft) && $this->timeLeft != '< 1' ){
       $this->rating->tests()->whereNull('user_answer_id')->update([
         'user_answer_id' => 0,
         'spent_time' => 0,
       ]);
-      return redirect()->route('user.result.test', $this->rating->code);
     }
   }
   
   public function render()
   {
     $this->time = time();
-    $this->getTestOrRedirect();
     $this->checkTestTime();
+    $this->getTestOrRedirect();
     return view('livewire.user.test-online');
 	}
 
