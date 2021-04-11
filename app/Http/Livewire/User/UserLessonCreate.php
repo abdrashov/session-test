@@ -8,7 +8,8 @@ use Livewire\Component;
 class UserLessonCreate extends Component
 {
   public $lesson;
-	public $questions;
+  public $lesson_id;
+  public $questions;
   public $answers;
 
   protected $rules = [
@@ -22,19 +23,15 @@ class UserLessonCreate extends Component
 
   public function mount($id)
   {
-    $this->lesson = auth()->user()->lessons()->find($id);
-  }
-
-  public function dehydrate()
-  {
-    $this->lesson = auth()->user()->lessons()->find($this->lesson->id);
+    $this->lesson_id = $id;
   }
 
   public function render()
   {
-    return view('livewire.user.user-lesson-create', [
-      'lesson_count' => $this->lesson->questions->count(),
-    ]);
+    $this->lesson = auth()->user()->lessons()->with(['questions' => function ($query) {
+      $query->orderBy('created_at', 'desc');
+    }])->find($this->lesson_id);
+    return view('livewire.user.user-lesson-create');
   }
 
   public function save()
@@ -42,8 +39,11 @@ class UserLessonCreate extends Component
   	$this->validate();
     $params = $this->answers;
     $params[0] = array_merge($params[0], ['status' => true]);
-  	$this->lesson->questions()->create($this->questions)->answers()->createMany($params);
+    $this->lesson->questions()->create($this->questions)->answers()->createMany($params);
     unset($this->answers, $this->questions);
+    if( $this->lesson->questions->count() > 49 )
+      $this->lesson->update(['status' => true]);
+
   }
 
 

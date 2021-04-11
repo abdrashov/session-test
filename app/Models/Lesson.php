@@ -20,10 +20,4 @@ class Lesson extends Model
   {
   	return $this->belongsTo(User::class);
   }
-
-  public function isStatus():bool
-  {
-    return $this->questions()->count() > 49;
-  }
-
 }

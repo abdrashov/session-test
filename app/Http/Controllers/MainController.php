@@ -13,10 +13,4 @@ class MainController extends Controller
 		$lessons = Lesson::with('user', 'questions.answers')->get();
 		return view('lessons', compact('lessons'));
 	}
-
-	public function show($code)
-	{
-		$lesson = Lesson::where('code', $code)->with('user', 'questions.answers')->first();
-		return view('lesson', compact('lesson'));
-	}
 }
