@@ -1,9 +1,10 @@
   <x-slot name="header">
     <div class="flex justify-between">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Мои тесты') }}
+        {{ __('Если вы не нашли свою дисциплину, то вы можете добавить ее тут сами') }}
       </h2>
     </div>
+    <p class="text-sm text-gray-600">Для того чтобы пройти пробные тесты по вашим дисциплинам, необходимо добавить не менее 50 вопросов</p>
   </x-slot>
 
   <div class="py-12"> 
@@ -59,13 +60,13 @@
                         Дисциплина
                       </th>
                       <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Дата
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Статус
                       </th>
                       <th scope="col" colspan="2" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Вопросы
-                      </th>
-                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Тест
                       </th>
                     </tr>
                   </thead>
@@ -78,22 +79,19 @@
                           </div>
                         </td>
                         <td class="px-6 py-4">
-                          <div class="text-sm text-gray-900 whitespace-nowrap">
+                          <div class="text-sm text-gray-900 ">
                             {{ $lesson->title }}
                           </div>
                         </td>
                         <td class="px-6 py-4">
-                          <span class="whitespace-nowrap px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $lesson->isStatus() ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }} ">
-                            {{ $lesson->isStatus() ? 'active' : 'not active' }}
+                          <div class="text-sm text-gray-900 whitespace-nowrap">
+                            {{ $lesson->created_at->format('d/m/Y') }}
+                          </div>
+                        </td>
+                        <td class="px-6 py-4">
+                          <span class="whitespace-nowrap px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $lesson->status ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }} ">
+                            {{ $lesson->status ? 'active' : 'not active' }}
                           </span>
-                          {!!
-                            $lesson->isStatus() 
-                            ? '' 
-                            : '<span class="whitespace-nowrap px-2 text-gray-500 text-xs leading-5 font-semibold">
-                                Чтобы тест стал активным, нужно не менее 100 вопросов.
-                              </span>'
-                         !!}
-                          
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -101,13 +99,8 @@
                           </span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          <a href="{{ route('lesson.show' , $lesson->code) }}" class="text-indigo-600 hover:text-indigo-900">
-                            Посмотреть все вопросы
-                          </a>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           <a href="{{ route('user.lesson.create' , $lesson->id) }}" class="text-indigo-600 hover:text-indigo-900">
-                            Добавить вопросы
+                            Подробнее
                           </a>
                         </td>
                       </tr>

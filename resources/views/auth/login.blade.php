@@ -9,7 +9,7 @@
 			/>
 		</x-slot>
 
-		<h1 class="mb-4 text-2xl font-semibold text-gray-700 dark:text-gray-200" >
+		<h1 class="mb-4 text-xl font-semibold text-gray-700 sm:text-2xl" >
 			{{ __('Login') }}
 		</h1>
 

@@ -6,34 +6,37 @@
 	</h2>
 </x-slot>
 
-<div class="pt-8 pb-12">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="pt-4 pb-12">
+	<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-		<x-jet-validation-errors class="mb-3"/>
+ 		<div class="px-4  sm:px-0 py-3">
+ 			
+			<x-jet-validation-errors class="mb-3"/>
 
-		<div class="grid grid-cols-3 gap-4">
-			<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
-				Оставшиеся вопросы
-			</dt>
-			<dd class="text-sm text-gray-900 sm:col-span-2">
-				{{ $rating->tests()->whereNull('user_answer_id')->count() }}
-			</dd>
-		</div>
-		<div class="mt-3 grid grid-cols-3 gap-4">
-			<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
-				Оставшееся время 
-			</dt>
-			<dd wire:poll.5000ms="updateTime" class="text-sm text-gray-900 sm:col-span-2">
-				{{ $timeLeft }} мин
-			</dd>
-		</div>
-		<div class="mt-3 grid grid-cols-3 gap-4">
-			<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
-				Правильный ответ
-			</dt>
-			<dd class="text-sm text-gray-900 sm:col-span-2">
-				{{ $rating->getSumRightAnswer() }}
-			</dd>
+			<div class="grid grid-cols-3 gap-4">
+				<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
+					Оставшиеся вопросы
+				</dt>
+				<dd class="text-sm text-gray-900 sm:col-span-2">
+					{{ $rating->tests()->whereNull('user_answer_id')->count() }}
+				</dd>
+			</div>
+			<div class="mt-3 grid grid-cols-3 gap-4">
+				<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
+					Оставшееся время
+				</dt>
+				<dd wire:poll.5000ms="updateTime" class="text-sm text-gray-900 sm:col-span-2">
+					{{ $timeLeft }} мин
+				</dd>
+			</div>
+			<div class="mt-3 grid grid-cols-3 gap-4">
+				<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
+					Правильный ответ
+				</dt>
+				<dd class="text-sm text-gray-900 sm:col-span-2">
+					{{ $rating->getSumRightAnswer() }}
+				</dd>
+			</div>
 		</div>
 
 		<form wire:submit.prevent="updateAnswer">

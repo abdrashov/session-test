@@ -1,76 +1,45 @@
 <x-guest-layout>
-	<div class="py-14 bg-gray-50">
-		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-			<p class="mb-3 text-base text-gray-900 md:text-xl ">
-				Чтобы пройти пробные тесты, вам необходимо зарегистрироваться в системе
-			</p>
 
-			<div class="overflow-hidden sm:rounded-lg border-b border-gray-200 shadow">
-				<div class="flex flex-col">
-					<div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-						<div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-							<div class="overflow-hidden">
-								<table class="min-w-full divide-y divide-gray-200">
-									<thead class="bg-gray-50">
-										<tr>
-											<th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-												#
-											</th>
-											<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-												Дисциплина
-											</th>
-											<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-												Вопросы
-											</th>
-											<th scope="col" colspan="3" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-												Дата создания
-											</th>
-										</tr>
-									</thead>
-									<tbody class="bg-white divide-y divide-gray-200">
-										@foreach($lessons as $lesson)
+	<div class="container px-5 py-8 mx-auto">
+		<h1 class="text-2xl tracking-tight font-semibold text-gray-800 md:text-3xl">
+			<span class="block xl:inline">Дисциплины и тесты</span>
+		</h1>
+	</div>
+	<section class="text-gray-600 body-font overflow-hidden">
+		<div class="container px-5 pb-24 mx-auto">
+			<div class="-my-8 divide-y-2 divide-gray-100">
+				@foreach($lessons as $lesson)
+				<div class="py-8 flex flex-wrap md:flex-nowrap">
+					<div class="md:w-64 md:mb-0 mb-2 flex-shrink-0 flex flex-col">
+						<span class="font-semibold title-font text-gray-700">ДАТА СОЗДАНИЯ</span>
+						<span class="mt-1 text-gray-500 text-sm">{{ $lesson->created_at->format('d/m/Y') }}</span>
+					</div>
+					<div class="md:flex-grow">
+						<h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{ $lesson->title }}</h2>
+						<p class="leading-relaxed">
+							<a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-gray-900">
+								Не доступен. 
+							</a>
+							Чтобы пройти пробные тесты, вам необходимо 
+							<a href="{{ route('login') }}" class="text-gray-700 hover:text-gray-900">
+								зарегистрироваться
+							</a>
+							в системе.
+						</p>
 
-										<tr>
-											<td class="px-4 py-4">
-												<div class="text-sm font-medium text-gray-900">
-													{{ $loop->iteration }}
-												</div>
-											</td>
-											<td class="px-6 py-4 whitespace-nowrap">
-												<div class="text-sm text-gray-900">
-													{{ $lesson->title }}
-												</div>
-											</td>
-											<td class="px-6 py-4 whitespace-nowrap">
-												<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-													{{ $lesson->questions->count() }}
-												</span>
-											</td>
-											<td class="px-6 py-4 whitespace-nowrap">
-												<div class="text-sm text-gray-900">
-													{{ $lesson->created_at->format('d/m/Y') }}
-												</div>
-											</td>
-											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												<a href="{{ route('g.lesson.show' , $lesson->code) }}" class="text-indigo-600 hover:text-indigo-900">
-													Подробнее
-												</a>
-											</td>
-											<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												<a href="{{ route('dashboard') }}" class="text-gray-600 hover:text-gray-900">
-													Не доступен
-												</a>
-											</td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-							</div>
-						</div>
+						<a href="{{ route('lesson.show' , $lesson->code) }}" class="text-indigo-500 inline-flex items-center mt-4">Подробнее
+							<svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M5 12h14"></path>
+								<path d="M12 5l7 7-7 7"></path>
+							</svg>
+						</a>
 					</div>
 				</div>
+				@endforeach
+
 			</div>
 		</div>
-	</div>
+	</section>
+
 </x-guest-layout>
