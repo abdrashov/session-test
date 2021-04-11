@@ -28,7 +28,6 @@ Route::middleware('guest')->group(function () {
 		return view('welcome');
 	})->name('/');
 	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
-	Route::get('/g/discipline/{code}', [MainController::class, 'show'])->name('g.lesson.show');
 });
 
 
