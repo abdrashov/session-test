@@ -62,7 +62,10 @@ class Test extends Model
  		
  		if( $answer_id == $this->user_answer_id && $answer_id != $this->right_answer_id )
  			return 'bg-red-100 font-bold';
- 		
+
+ 		if( $this->user_answer_id === 0 )
+ 			return 'bg-gray-100';
+
  		return '';
 
  	}

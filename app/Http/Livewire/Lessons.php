@@ -22,7 +22,7 @@ class Lessons extends Component
 
 	public function render()
 	{
-		$lessons = Lesson::with('questions')->paginate(10);
+		$lessons = Lesson::where('status', true)->with('questions')->paginate(10);
 		return view('livewire.lessons', compact('lessons'));
 	}
 
@@ -38,7 +38,7 @@ class Lessons extends Component
 		$this->validate();
 
 		$rating = Rating::create([
-			'code' => str_replace(' ', '-', auth()->user()->name).'-'.time().$this->lesson_id,
+			'code' => str_replace(' ', '-', strtolower(auth()->user()->name)).'-'.time().$this->lesson_id,
 			'lesson_id' => $this->lesson_id,
 			'user_id' => auth()->id(),
 			'test_count' => $this->test_count, 

@@ -16,7 +16,7 @@ class TestResult extends Component
 
 	public function render()
 	{
-		$this->no_response = $this->rating->tests()->where('user_answer_id', 0)->where('spent_time', 0)->count();
+		$this->no_response = $this->rating->tests()->where('user_answer_id', 0)->count();
 		return view('livewire.user.test-result');
 	}
 }
