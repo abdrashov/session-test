@@ -1,15 +1,17 @@
 <?php
 
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\User\OnlineTestController;
-use App\Http\Livewire\User\TestOnline;
-use App\Http\Livewire\User\TestResult;
-use App\Http\Livewire\User\UserTest;
-use App\Http\Livewire\User\UserLesson;
-use App\Http\Livewire\User\UserLessonCreate;
-use App\Http\Livewire\Lessons;
-use App\Http\Livewire\LessonShow;
+
+use App\Http\Livewire\TestOnline;
+use App\Http\Livewire\TestResult;
 use Illuminate\Support\Facades\Route;
+
+
+use App\Http\Livewire\Disciplines;
+use App\Http\Livewire\Discipline;
+use App\Http\Livewire\Tests;
+use App\Http\Livewire\MyDisciplines;
+use App\Http\Livewire\MyDisciplineCreate;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,16 +32,23 @@ Route::middleware('guest')->group(function () {
 	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
 });
 
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-	Route::get('/disciplines', Lessons::class)->name('lesson.index');
-	Route::get('/discipline/{code}', LessonShow::class)->name('lesson.show');
-	Route::prefix('dashboard')->group(function(){
-		Route::get('', UserTest::class)->name('dashboard');
-		Route::get('/discipline', UserLesson::class)->name('user.lesson');
-		Route::get('/discipline/create/{id}', UserLessonCreate::class)->name('user.lesson.create');
-		Route::get('/{code}', TestOnline::class)->name('user.online.test');
-		Route::get('/{code}/result', TestResult::class)->name('user.result.test');
+
+	Route::prefix('disciplines')->name('disciplines')->group(function(){
+		Route::get('', Disciplines::class);
+		Route::get('{code}', Discipline::class)->name('.show');
 	});
+
+	Route::prefix('tests')->name('tests')->group(function(){
+		Route::get('', Tests::class);
+		Route::get('{code}', TestOnline::class)->name('.online');
+		Route::get('{code}/result', TestResult::class)->name('.result');
+	});
+
+	Route::prefix('my/disciplines')->name('my.disciplines')->group(function(){
+		Route::get('', MyDisciplines::class);
+		Route::get('{id}/create', MyDisciplineCreate::class)->name('.create');
+	});
+
 });
 
