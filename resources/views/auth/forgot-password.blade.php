@@ -1,12 +1,17 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+    <x-guest.authentication-card>
+        <x-slot name="image">
+            <img
+              aria-hidden="true"
+              class="object-cover w-full h-full dark:hidden"
+              src="../assets/img/forgot-password-office.jpeg"
+              alt="Office"
+            />
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-        </div>
+      <h1 class="mb-4 text-lg font-medium text-gray-700 dark:text-gray-200">
+        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+      </h1>
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -30,5 +35,6 @@
                 </x-jet-button>
             </div>
         </form>
-    </x-jet-authentication-card>
+
+    </x-guest.authentication-card>
 </x-guest-layout>

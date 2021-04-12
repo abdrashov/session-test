@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -19,11 +19,13 @@
 </head>
 <body>
 
-    <x-guest-header/>
+    <x-guest.navigation-menu/>
 
     <main class="mt-14">
         {{ $slot }}
     </main>
+
+    <x-guest.footer/>
 
 </body>
 </html>

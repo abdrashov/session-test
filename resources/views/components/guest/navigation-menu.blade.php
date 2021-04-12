@@ -1,5 +1,5 @@
 <div class="fixed top-0 left-0 z-50 w-full">
-  <nav x-data="{ open: false }" class="bg-white shadow">
+  <nav x-data="{ open: false }" class="bg-white shadow-sm">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">

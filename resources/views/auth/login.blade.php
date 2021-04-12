@@ -1,5 +1,5 @@
 <x-guest-layout>
-	<x-authentication-card>
+	<x-guest.authentication-card>
 		<x-slot name="image">
 			<img
 			aria-hidden="true"
@@ -63,5 +63,5 @@
 				{{ __('Create Account') }}
 			</a>
 		</p>
-	</x-authentication-card>
+	</x-guest.authentication-card>
 </x-guest-layout>
