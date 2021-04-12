@@ -9,8 +9,12 @@
 	<x-slot name="header">
 		<x-test-grid-text>
 			<x-slot name="header"> Потраченное время </x-slot>
-			{{ floor($this->rating->getSumSpentTime() / 60) }} мин 
-			{{ $this->rating->getSumSpentTime() % 60 }} сек
+			@php
+				$min = floor($this->rating->getSumSpentTime() / 60);
+				$sec = $this->rating->getSumSpentTime() % 60;
+				echo $min != 0 ? "$min мин " : "";
+				echo $sec != 0 ? "$sec сек " : "";
+			@endphp
 		</x-test-grid-text>
 
 		<x-test-grid-text class="mt-3">
