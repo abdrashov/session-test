@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Lesson;
 use App\Models\Rating;
 
-class Lessons extends Component
+class Disciplines extends Component
 {
 	public $modal = false;
 	public $lesson_id;
@@ -23,7 +23,7 @@ class Lessons extends Component
 	public function render()
 	{
 		$lessons = Lesson::where('status', true)->with('questions')->paginate(10);
-		return view('livewire.lessons', compact('lessons'));
+		return view('livewire.disciplines', compact('lessons'));
 	}
 
 	public function modalOpen($lesson_id, $lesson_title)
@@ -61,7 +61,7 @@ class Lessons extends Component
 		}
 
 		$rating->tests()->createMany($params);
-		return redirect()->route('dashboard');
+		return redirect()->route('tests');
 	}
 
 }

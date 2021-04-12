@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Lesson;
 
-class LessonShow extends Component
+class Discipline extends Component
 {
 	public $lesson;
 	
@@ -16,6 +16,6 @@ class LessonShow extends Component
 
 	public function render()
 	{
-		return view('livewire.lesson');
+		return view('livewire.discipline');
 	}
 }

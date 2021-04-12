@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\User;
+namespace App\Http\Livewire;
 
 use App\Models\Rating;
 use Livewire\Component;
@@ -17,6 +17,6 @@ class TestResult extends Component
 	public function render()
 	{
 		$this->no_response = $this->rating->tests()->where('user_answer_id', 0)->count();
-		return view('livewire.user.test-result');
+		return view('livewire.test-result');
 	}
 }

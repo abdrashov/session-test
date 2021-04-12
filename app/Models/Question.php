@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-  use HasFactory;
+	use HasFactory;
 
-  protected $fillable = ['title', 'lesson_id'];
+	protected $fillable = ['title', 'lesson_id'];
 
-  public function answers()
-  {
-  	return $this->hasMany(Answer::class);
-  }
+	public function answers()
+	{
+		return $this->hasMany(Answer::class);
+	}
 }
