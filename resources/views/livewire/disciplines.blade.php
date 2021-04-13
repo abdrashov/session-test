@@ -82,9 +82,9 @@
 						</x-text-info-card>
 					</x-table-data>
 
-					<x-table-data width="130">
+					<x-table-data>
 						<x-a-link href="{{ route('disciplines.show' , $lesson->code) }}">
-							Открыть все вопросы
+							<span class="whitespace-nowrap">Открыть все</span> вопросы
 						</x-a-link>
 					</x-table-data>
 

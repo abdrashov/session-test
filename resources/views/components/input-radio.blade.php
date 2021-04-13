@@ -1,8 +1,8 @@
 @props(['answer' => null])
 
-<div class="px-4 flex items-center">
-	<input id="answer{{ $answer }}" type="radio" class="form-radio" {{ $attributes }} value="{{ $answer }}">
-	<label for="answer{{ $answer }}" class="pl-2 inline-block py-4 text-sm text-gray-900">
+<div class="py-2 px-3 sm:px-6 w-full block">
+	<input id="answer{{ $answer }}" type="radio" class="form-radio" {{ $attributes }} value="{{ $answer }}"> &nbsp;
+	<label for="answer{{ $answer }}" class="break-words inline text-sm text-gray-900">
 		{{ $slot }}
 	</label>
 </div>

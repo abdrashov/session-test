@@ -14,14 +14,10 @@
 			{{ $rating->tests()->whereNull('user_answer_id')->count() }}
 		</x-test-grid-text>
 
-		<div class="mt-3 grid grid-cols-3 gap-4">
-			<dt class="text-sm font-medium text-gray-500 sm:col-span-1 col-span-2">
-				Оставшееся время
-			</dt>
-			<dd wire:poll.3000ms="updateTime" class="text-sm text-gray-900 sm:col-span-2">
-				{{ $timeLeft }} мин
-			</dd>
-		</div>
+		<x-test-grid-text wire:poll.3000ms="updateTime" class="mt-3">
+			<x-slot name="header"> Оставшееся время </x-slot>
+			{{ $timeLeft }} мин
+		</x-test-grid-text>
 		
 		<x-test-grid-text class="mt-3">
 			<x-slot name="header"> Правильный ответ </x-slot>
@@ -30,7 +26,7 @@
 	</x-slot>
 
 	<form wire:submit.prevent="updateAnswer">
-		<div class="px-3 pb-3 sm:px-6">
+		<div class="px-3 pb-3 sm:px-6 break-words">
 			<h3 class="text-lg leading-6 font-medium text-gray-900">
 				{{ $test->question->title }}
 			</h3>
