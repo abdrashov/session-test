@@ -77,6 +77,13 @@
  	</h3>
 
  	<hr class="mb-2">
+ 	@if( !$lesson->questions()->exists() )
+ 		<div class="px-4 sm:px-8 py-3 bg-gray-200">
+ 			<p class="font-semibold text-sm text-gray-600">
+ 				Вопросов не найдено или вы их еще не добавили
+ 			</p>
+ 		</div>
+ 	@endif
  	@foreach( $lesson->questions as $question )
 	 	<x-test-card>
 	 		<x-slot name="header">

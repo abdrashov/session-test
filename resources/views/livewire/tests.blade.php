@@ -30,6 +30,14 @@
           Тест
         </x-table-header>
       </x-slot>
+      @if( $ratings->count() == 0 )
+        <tr>
+          <x-table-header colspan="6" class="font-bold">
+            Вы еще не прошли пробные тесты. Пройти пробные тесты можно 
+            <a href="{{ route('disciplines') }}" class="font-bold text-indigo-600 hover:text-indigo-900">тут</a>
+          </x-table-header>
+        </tr>
+      @endif
       @foreach($ratings as $rating)
         <tr>
           <x-table-data>

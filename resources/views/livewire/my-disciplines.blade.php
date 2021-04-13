@@ -66,6 +66,13 @@
           Вопросы
         </x-table-header>
       </x-slot>
+      @if( $lessons->count() == 0 )
+        <tr>
+          <x-table-header colspan="6" class="font-bold">
+            Дисциплин не найдено
+          </x-table-header>
+        </tr>
+      @endif
       @foreach($lessons as $lesson)
         <tr>
           <x-table-data>
