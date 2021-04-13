@@ -30,18 +30,24 @@ class MyDisciplineCreate extends Component
 	{
 		$this->lesson = auth()->user()->lessons()->with(['questions' => function ($query) {
 			$query->orderBy('created_at', 'desc');
-		}])->find($this->lesson_id);
+		}])->findOrFail($this->lesson_id);
+		
 		return view('livewire.my-disciplines-create');
 	}
 
 	public function save()
 	{
 		$this->validate();
-		$params = $this->answers;
-		ksort($params);
-		$params[0] = array_merge($params[0], ['status' => true]);
-		$this->lesson->questions()->create($this->questions)->answers()->createMany($params);
+
+		$answers = $this->answers;
+		$question = $this->questions;
+
 		unset($this->answers, $this->questions);
+		ksort($answers);
+
+		$answers[0] = array_merge($answers[0], ['status' => true]);
+		$this->lesson->questions()->create($question)->answers()->createMany($answers);
+
 		if( $this->lesson->questions->count() > 49 )
 			$this->lesson->update(['status' => true]);
 

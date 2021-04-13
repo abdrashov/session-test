@@ -19,11 +19,18 @@ class TestOnline extends Component
 		'answer_id' => 'required'
 	];
 
-  protected $listeners = ['updateAnswer'];
-
   public function mount($code)
   {
-    $this->rating = auth()->user()->ratings()->with('tests', 'lesson')->where('code', $code)->first();
+    $this->rating = auth()->user()->ratings()->with('tests', 'lesson')->where('code', $code)->firstOrFail();
+  }
+  
+  private function getTestOrRedirect()
+  {
+    $this->test = $this->rating->tests()->whereNull('user_answer_id')->first();
+    if( empty( $this->test ) ){
+      $this->rating->update(['status' => false]);
+      return redirect()->route('tests.result', $this->rating->code);
+    }
   }
   
   private function getTestTime()
@@ -47,21 +54,12 @@ class TestOnline extends Component
     }
   }
   
-  private function getTestOrRedirect()
-  {
-    $this->test = $this->rating->tests()->whereNull('user_answer_id')->first();
-    if( empty( $this->test ) ){
-      $this->rating->update(['status' => false]);
-      return redirect()->route('tests.result', $this->rating->code);
-    }
-  }
-  
   public function render()
   {
+    $this->getTestOrRedirect();
     $this->time = time();
     $this->getTestTime();
     $this->checkTestTime();
-    $this->getTestOrRedirect();
     return view('livewire.test-online');
 	}
 

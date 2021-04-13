@@ -11,7 +11,7 @@ class Discipline extends Component
 	
 	public function mount($code)
 	{
-		$this->lesson = Lesson::where('code', $code)->with('user', 'questions.answers')->first();
+		$this->lesson = Lesson::where('code', $code)->with('user', 'questions.answers')->firstOrFail();
 	}
 
 	public function render()
