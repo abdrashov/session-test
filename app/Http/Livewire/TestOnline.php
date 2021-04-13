@@ -24,22 +24,14 @@ class TestOnline extends Component
     $this->rating = auth()->user()->ratings()->with('tests', 'lesson')->where('code', $code)->firstOrFail();
   }
   
-  private function getTestOrRedirect()
-  {
-    $this->test = $this->rating->tests()->whereNull('user_answer_id')->first();
-    if( empty( $this->test ) ){
-      $this->rating->update(['status' => false]);
-      return redirect()->route('tests.result', $this->rating->code);
-    }
-  }
-  
   private function getTestTime()
   {
-    $this->timeLeft = ($this->rating->test_time * 60) - $this->rating->getSumSpentTime();
-    if( $this->timeLeft > 0 && $this->timeLeft < 60 )
-      $this->timeLeft = '< 1';
-    else
-      $this->timeLeft = (int) floor($this->timeLeft/60);
+    $timeLeft = ($this->rating->test_time * 60) - $this->rating->getSumSpentTime();
+
+    if( $timeLeft > 0 && $timeLeft <= 60 )
+      return '< 1';
+
+    return (int) floor($timeLeft/60);
   }
   
   private function checkTestTime()
@@ -54,12 +46,22 @@ class TestOnline extends Component
     }
   }
   
+  private function getTestOrRedirect()
+  {
+    $this->test = $this->rating->tests()->whereNull('user_answer_id')->first();
+    if( empty( $this->test ) ){
+      $this->rating->update(['status' => false]);
+      return redirect()->route('tests.result', $this->rating->code);
+    }
+  }
+  
   public function render()
   {
-    $this->getTestOrRedirect();
     $this->time = time();
-    $this->getTestTime();
+    $this->timeLeft = $this->getTestTime();
     $this->checkTestTime();
+    $this->getTestOrRedirect();
+    
     return view('livewire.test-online');
 	}
 
