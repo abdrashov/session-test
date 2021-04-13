@@ -16,8 +16,8 @@ class Disciplines extends Component
 
 	protected $rules = [
 		'lesson_id' => 'required',
-		'test_count' => 'required|integer|min:10|max:100',
-		'test_time' => 'required|integer|min:5|max:50'
+		'test_count' => 'required|integer|min:5|max:100',
+		'test_time' => 'required|integer|min:1|max:50'
 	];
 
 	public function render()
