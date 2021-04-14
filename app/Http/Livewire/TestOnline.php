@@ -57,11 +57,10 @@ class TestOnline extends Component
   
   public function render()
   {
-    $this->time = time();
     $this->timeLeft = $this->getTestTime();
     $this->checkTestTime();
     $this->getTestOrRedirect();
-    
+    $this->time = time();
     return view('livewire.test-online');
 	}
 
@@ -70,6 +69,7 @@ class TestOnline extends Component
   	$this->validate();
   	@$this->test->update(['user_answer_id' => $this->answer_id]);
     $this->answer_id = null;
+    $this->updateTime();
 	}
 
   public function updateTime()
