@@ -10,7 +10,7 @@ class TestResult extends Component
 	public $rating;
 
 	public function mount($code){
-		$this->rating = auth()->user()->ratings()->where('code', $code)->with('tests.answer1', 'tests.answer2', 'tests.answer3', 'tests.answer4', 'tests.answer5', 'tests.rightAnswerId')->firstOrFail();
+		$this->rating = auth()->user()->ratings()->byCode($code)->with('tests')->firstOrFail();
 	}
 
 	public function render()

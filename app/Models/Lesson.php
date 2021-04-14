@@ -20,4 +20,10 @@ class Lesson extends Model
   {
   	return $this->belongsTo(User::class);
   }
+
+  public function scopeByActive($query)
+  {
+    return $query->where('status', true);
+  }
+
 }
