@@ -84,7 +84,7 @@
  			</p>
  		</div>
  	@endif
- 	@foreach( $lesson->questions as $question )
+ 	@foreach( $lesson->questions->load('answers') as $question )
 	 	<x-test-card>
 	 		<x-slot name="header">
 	 			<b>#{{ $loop->iteration }}</b> {{ $question->title }}
