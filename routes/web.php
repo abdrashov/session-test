@@ -30,7 +30,18 @@ Route::middleware('guest')->group(function () {
 		return view('welcome');
 	})->name('/');
 	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
+
+	Route::get('/facebook', function(){
+		return Socialite::driver('facebook')->redirect();
+	})->name('facebook');
+
+	Route::get('/facebook/callback', function(){
+		return '';
+	})->name('facebook.callback');
+
 });
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
