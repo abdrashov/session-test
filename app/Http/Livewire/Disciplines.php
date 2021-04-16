@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Lesson;
 use App\Models\Rating;
+use Illuminate\Support\Facades\Cache;
 
 class Disciplines extends Component
 {
@@ -22,7 +23,10 @@ class Disciplines extends Component
 
 	public function render()
 	{
-		$lessons = Lesson::byActive()->withCount('questions')->paginate(10);
+		$lessons = Cache::remember('AuthLessons', 600, function () {
+			return Lesson::byActive()->withCount('questions')->paginate(10);
+		});
+
 		return view('livewire.disciplines', compact('lessons'));
 	}
 
