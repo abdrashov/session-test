@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lesson::class)->orderByDesc('id');
     }
+
+    public function socialite()
+    {
+        return $this->hasOne(AuthSocialite::class);
+    }
 }
