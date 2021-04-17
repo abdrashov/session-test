@@ -1,17 +1,15 @@
 <?php
 
+use App\Http\Controllers\AuthController\FaceBookController;
 use App\Http\Controllers\MainController;
-
+use App\Http\Livewire\Discipline;
+use App\Http\Livewire\Disciplines;
+use App\Http\Livewire\MyDisciplineCreate;
+use App\Http\Livewire\MyDisciplines;
 use App\Http\Livewire\TestOnline;
 use App\Http\Livewire\TestResult;
-use Illuminate\Support\Facades\Route;
-
-
-use App\Http\Livewire\Disciplines;
-use App\Http\Livewire\Discipline;
 use App\Http\Livewire\Tests;
-use App\Http\Livewire\MyDisciplines;
-use App\Http\Livewire\MyDisciplineCreate;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +29,10 @@ Route::middleware('guest')->group(function () {
 	})->name('/');
 	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
 
-	Route::get('/facebook', function(){
-		return Socialite::driver('facebook')->redirect();
-	})->name('facebook');
-
-	Route::get('/facebook/callback', function(){
-		return '';
-	})->name('facebook.callback');
+	Route::prefix('auth/facebook')->group(function(){
+		Route::get('', [FaceBookController::class, 'redirect'])->name('facebook');
+		Route::get('/callback', [FaceBookController::class, 'loginOrRegister']);
+	});
 
 });
 
