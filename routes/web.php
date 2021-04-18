@@ -33,7 +33,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::get('/public/tests', function(){
-		return redirect()->route('tests');
+		return redirect('/tests');
 	});
 
 	Route::prefix('disciplines')->name('disciplines')->group(function(){
