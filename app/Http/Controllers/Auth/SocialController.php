@@ -10,6 +10,11 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('is_socialte');
+	}
+
 	public function redirectToProvider($provider)
 	{
 		return Socialite::driver($provider)->redirect();
