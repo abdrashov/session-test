@@ -23,7 +23,7 @@ class SocialController extends Controller
 
 		auth()->login($user, true);
 
-		return redirect('/tests');
+		return redirect()->route('tests');
 	}
 
 	public function findOrCreateUser($provider, $socialiteUser)
@@ -52,8 +52,8 @@ class SocialController extends Controller
 	public function findUserBySocialId($provider, $id)
 	{
 		$socialAccount = SocialAccount::where('provider', $provider)
-													->where('provider_id', $id)
-													->first();
+		->where('provider_id', $id)
+		->first();
 
 		return $socialAccount ? $socialAccount->user : false;
 	}
