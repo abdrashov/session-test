@@ -24,11 +24,7 @@ Route::middleware('guest')->group(function () {
 
 	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
 
-	Route::group([
-		'prefix' => 'social-auth',
-		'as' => 'auth.social',
-		'middleware' => 'is_socialte',
-	], function(){
+	Route::prefix('social-auth')->name('auth.social')->group(function(){
 		Route::get('{provider}', [SocialController::class, 'redirectToProvider']);
 		Route::get('{provider}/callback', [SocialController::class, 'handleProviderCallback'])
 		->name('.callback');
@@ -36,6 +32,10 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+	Route::get('/public/tests', function(){
+		return redirect()->route('tests');
+	});
+
 	Route::prefix('disciplines')->name('disciplines')->group(function(){
 		Route::get('', Disciplines::class);
 		Route::get('{code}', Discipline::class)->name('.show');
