@@ -7,11 +7,35 @@ use App\Http\Livewire\MyDisciplines;
 use App\Http\Livewire\TestOnline;
 use App\Http\Livewire\TestResult;
 use App\Http\Livewire\Tests;
+use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::get('logout', function(){
+	Auth::logout();
+	return redirect('/');
+});
 
+Route::middleware('guest')->group(function () {
+	Route::get('/', function(){
+		return view('welcome');
+	})->name('/');
+
+	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
+
+	Route::group([
+		'prefix' => 'social-auth',
+		'as' => 'auth.social',
+		'middleware' => 'is_socialte',
+	], function(){
+		Route::get('{provider}', [SocialController::class, 'redirectToProvider']);
+		Route::get('{provider}/callback', [SocialController::class, 'handleProviderCallback'])
+		->name('.callback');
+	});
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	Route::prefix('disciplines')->name('disciplines')->group(function(){
 		Route::get('', Disciplines::class);
 		Route::get('{code}', Discipline::class)->name('.show');
@@ -28,5 +52,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 		Route::get('{id}/create', MyDisciplineCreate::class)->name('.create');
 	});
 });
-
-require __DIR__.'/guest.php';
