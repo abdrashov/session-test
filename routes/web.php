@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\SocialController;
-use App\Http\Controllers\MainController;
 use App\Http\Livewire\Discipline;
 use App\Http\Livewire\Disciplines;
 use App\Http\Livewire\MyDisciplineCreate;
@@ -11,32 +9,7 @@ use App\Http\Livewire\TestResult;
 use App\Http\Livewire\Tests;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-Route::middleware('guest')->group(function () {
-	Route::get('/', function(){
-		return view('welcome');
-	})->name('/');
-	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
-
-	Route::prefix('social-auth')->name('auth.social')->group(function(){
-		Route::get('{provider}', [SocialController::class, 'redirectToProvider']);
-		Route::get('{provider}/callback', [SocialController::class, 'handleProviderCallback'])
-		->name('.callback');
-	});
-});
-
-
+require_once __DIR__ . '\\guest.php';
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -55,6 +28,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 		Route::get('', MyDisciplines::class);
 		Route::get('{id}/create', MyDisciplineCreate::class)->name('.create');
 	});
-
 });
 
