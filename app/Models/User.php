@@ -71,6 +71,6 @@ class User extends Authenticatable
 
     public function socialite()
     {
-        return $this->hasOne(AuthSocialite::class);
+        return $this->hasOne(SocialAccount::class);
     }
 }
