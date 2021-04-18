@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController\FaceBookController;
+use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\MainController;
 use App\Http\Livewire\Discipline;
 use App\Http\Livewire\Disciplines;
@@ -29,11 +29,11 @@ Route::middleware('guest')->group(function () {
 	})->name('/');
 	Route::get('/g/disciplines', [MainController::class, 'index'])->name('g.lessons');
 
-	Route::prefix('auth/facebook')->group(function(){
-		Route::get('', [FaceBookController::class, 'redirect'])->name('facebook');
-		Route::get('/callback', [FaceBookController::class, 'loginOrRegister']);
+	Route::prefix('social-auth')->name('auth.social')->group(function(){
+		Route::get('{provider}', [SocialController::class, 'redirectToProvider']);
+		Route::get('{provider}/callback', [SocialController::class, 'handleProviderCallback'])
+		->name('.callback');
 	});
-
 });
 
 
