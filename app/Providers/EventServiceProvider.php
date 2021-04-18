@@ -19,12 +19,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            // ... other providers
-            'SocialiteProviders\\Facebook\\FacebookExtendSocialite@handle',
-        ],
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-        // ... other providers
             'SocialiteProviders\\VKontakte\\VKontakteExtendSocialite@handle',
+            'SocialiteProviders\\Facebook\\FacebookExtendSocialite@handle',
         ],
     ];
 
