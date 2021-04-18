@@ -17,7 +17,7 @@ class isSocialte
     public function handle(Request $request, Closure $next)
     {
         if( $request->provider && !in_array($request->provider, ['facebook', 'vkontakte']) ){
-            return redirect()->route('login');
+            return redirect()->route('login')->withErrors('Что-то пошло не так');
         }
         return $next($request);
     }
