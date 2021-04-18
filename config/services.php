@@ -33,7 +33,13 @@ return [
     'facebook' => [    
         'client_id' => env('FACEBOOK_CLIENT_ID'),  
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),  
-        'redirect' => env('FACEBOOK_REDIRECT_URI') 
-     ],
+        'redirect' => '/social-auth/facebook/callback', 
+    ],
+
+    'vkontakte' => [    
+        'client_id' => env('VKONTAKTE_CLIENT_ID'),  
+        'client_secret' => env('VKONTAKTE_CLIENT_SECRET'),  
+        'redirect' => '/social-auth/vkontakte/callback', 
+    ],
 
 ];

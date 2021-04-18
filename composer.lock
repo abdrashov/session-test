@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "039a5a3d1569826752d135c976baa24d",
+    "content-hash": "ccf6017aa9949df71d8086db2766541c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3330,6 +3330,47 @@
                 "source": "https://github.com/SocialiteProviders/Manager/tree/4.0.1"
             },
             "time": "2020-12-01T23:09:06+00:00"
+        },
+        {
+            "name": "socialiteproviders/vkontakte",
+            "version": "4.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/VKontakte.git",
+                "reference": "660cba24aa7ddd2236e0192f74249017101382b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/VKontakte/zipball/660cba24aa7ddd2236e0192f74249017101382b9",
+                "reference": "660cba24aa7ddd2236e0192f74249017101382b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2 || ^8.0",
+                "socialiteproviders/manager": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\VKontakte\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "VKontakte OAuth2 Provider for Laravel Socialite",
+            "support": {
+                "source": "https://github.com/SocialiteProviders/VKontakte/tree/4.2.1"
+            },
+            "time": "2020-12-01T23:10:59+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
