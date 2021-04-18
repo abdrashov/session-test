@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('guest')->group(function () {

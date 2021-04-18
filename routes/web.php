@@ -9,7 +9,6 @@ use App\Http\Livewire\TestResult;
 use App\Http\Livewire\Tests;
 use Illuminate\Support\Facades\Route;
 
-require_once __DIR__ . '\\guest.php';
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -30,3 +29,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 	});
 });
 
+require __DIR__.'/guest.php';
