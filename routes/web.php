@@ -32,10 +32,6 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-	Route::get('/public/tests', function(){
-		return redirect('/tests');
-	});
-
 	Route::prefix('disciplines')->name('disciplines')->group(function(){
 		Route::get('', Disciplines::class);
 		Route::get('{code}', Discipline::class)->name('.show');
