@@ -65,7 +65,7 @@ class SocialController extends Controller
 
 	public function findUserByEmail($provider, $email)
 	{
-		return !$email ? null : User::where('email', $email)->first();
+		return !$email ? Str::random(25).'@shymhub.ru' : User::where('email', $email)->first();
 	}
 
 	public function addSocialAccount($provider, $user, $socialiteUser)
