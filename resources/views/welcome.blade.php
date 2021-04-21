@@ -18,7 +18,7 @@
           </div>
 
           <div class="mt-3 sm:mt-0 sm:ml-3">
-            <x-guest.a-link href="{{ route('g.lessons') }}" class="text-indigo-700 bg-indigo-100 hover:bg-indigo-200">Войти</x-guest.a-link>
+            <x-guest.a-link href="{{ route('login') }}" class="text-indigo-700 bg-indigo-100 hover:bg-indigo-200">Войти</x-guest.a-link>
           </div>
         </div>
       </div>
