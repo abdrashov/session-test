@@ -15,7 +15,7 @@ class CreateTestsTable extends Migration
     {
         Schema::create('tests', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('rating_id')->unsigned();
+            $table->foreignId('rating_id')->constrained()->onDelete('cascade');
             $table->bigInteger('question_id')->unsigned();
             $table->bigInteger('answer1_id')->unsigned();
             $table->bigInteger('answer2_id')->unsigned();
