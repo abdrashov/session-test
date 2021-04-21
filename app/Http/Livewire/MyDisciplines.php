@@ -12,8 +12,8 @@ class MyDisciplines extends Component
 	public $code;
 
 	protected $rules = [
-		'title' => 'required|unique:lessons',
-		'code' => 'required|unique:lessons',
+		'title' => 'required|unique:lessons|string|max:161',
+		'code' => 'required|unique:lessons|string|max:191',
 	];
 
 	public function updatedTitle()

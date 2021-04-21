@@ -13,12 +13,12 @@ class MyDisciplineCreate extends Component
 	public $answers;
 
 	protected $rules = [
-		'questions.title' => 'required|string',
-		'answers.0.title' => 'required|string',
-		'answers.1.title' => 'required|string',
-		'answers.2.title' => 'required|string',
-		'answers.3.title' => 'required|string',
-		'answers.4.title' => 'required|string',
+		'questions.title' => 'required|string|max:512',
+		'answers.0.title' => 'required|string|max:191',
+		'answers.1.title' => 'required|string|max:191',
+		'answers.2.title' => 'required|string|max:191',
+		'answers.3.title' => 'required|string|max:191',
+		'answers.4.title' => 'required|string|max:191',
 	];
 
 	public function mount($id)
