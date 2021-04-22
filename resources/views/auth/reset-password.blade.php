@@ -1,8 +1,17 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+<x-other-layout>
+    <x-guest.authentication-card>
+        <x-slot name="image">
+            <img
+              aria-hidden="true"
+              class="object-cover w-full h-full dark:hidden"
+              src="../assets/img/password-send.jpeg"
+              alt="Office"
+            />
         </x-slot>
+
+        <h1 class="mb-4 text-lg font-medium text-gray-700 dark:text-gray-200">
+            {{ __('Reset Password') }}
+        </h1>
 
         <x-jet-validation-errors class="mb-4" />
 
@@ -32,5 +41,6 @@
                 </x-jet-button>
             </div>
         </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+
+    </x-guest.authentication-card>
+</x-other-layout>
