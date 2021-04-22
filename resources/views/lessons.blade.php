@@ -1,5 +1,9 @@
-<x-guest-layout>
 
+@section('title', 'Дисциплины и тесты | Auezov University')
+
+@section('description', $description)
+
+<x-guest-layout>
 	<x-guest.container class="pt-12">
 
 		<h1 class="mb-5 text-2xl tracking-tight font-semibold text-gray-800 md:text-3xl">

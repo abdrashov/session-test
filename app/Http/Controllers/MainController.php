@@ -10,10 +10,15 @@ class MainController extends Controller
 {
 	public function index()
 	{
-		$lessons = Cache::remember('lessons', 600, function () {
+		$lessons = Cache::remember('lessons', 1200, function () {
 			return Lesson::byActive()->get();
 		});
-
-		return view('lessons', compact('lessons'));
+		$description = '';
+		foreach($lessons as $lesson){
+			$description = $description.$lesson->title.'. ';
+			if( strlen($description) > 120 )
+				break;
+		}
+		return view('lessons', compact('lessons', 'description'));
 	}
 }

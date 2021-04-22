@@ -1,3 +1,6 @@
+
+@section('title', __('Create Account') . ' | Auezov University Test')
+
 <x-guest-layout>
 	<x-guest.authentication-card>
 		<x-slot name="image">

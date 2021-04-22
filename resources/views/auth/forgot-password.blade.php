@@ -1,3 +1,6 @@
+
+@section('title',  __('Forgot your password?') . ' | Auezov University Test')
+
 <x-guest-layout>
     <x-guest.authentication-card>
         <x-slot name="image">

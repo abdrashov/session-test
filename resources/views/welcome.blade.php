@@ -1,3 +1,8 @@
+
+@section('title', config('app.name'))
+
+@section('description', 'Платформа для подготовки к сессиям. На сайте вы можете найти различные дисциплины и пройти пробные тесты, если вы не нашли свою дисциплину, то можете добавить ее сами.')
+
 <x-guest-layout>
   <x-guest.container class="pt-24 flex md:flex-row flex-col items-center">
     <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">

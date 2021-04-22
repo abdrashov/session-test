@@ -1,3 +1,6 @@
+
+@section('title', 'Войти | Auezov University Test')
+
 <x-guest-layout>
 	<x-guest.authentication-card>
 		<x-slot name="image">
@@ -51,14 +54,14 @@
 
 		<hr class="my-4" />
 
-     	<a href="{{ route('auth.social', 'facebook') }}" class="flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
-     		Facebook
-     		скоро...
-     	</a>
-
      	<a href="{{ route('auth.social', 'vkontakte') }}" class="flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
      		<img width="20" class="mr-1" src="https://image.flaticon.com/icons/png/512/25/25684.png" alt="vk"> 
      		 Vkontakte
+     	</a>
+
+     	<a {{-- href="{{ route('auth.social', 'facebook') }}" --}} class="flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-white transition-colors duration-150 border rounded-lg bg-transparent text-gray-400 outline-none focus:shadow-outline-gray">
+     		Facebook
+     		скоро...
      	</a>
 
 		@if (Route::has('password.request'))
