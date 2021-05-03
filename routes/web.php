@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\Auth\VerificationEmail;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\WordController;
 use App\Http\Livewire\Discipline;
 use App\Http\Livewire\Disciplines;
 use App\Http\Livewire\MyDisciplineCreate;
@@ -7,9 +11,6 @@ use App\Http\Livewire\MyDisciplines;
 use App\Http\Livewire\TestOnline;
 use App\Http\Livewire\TestResult;
 use App\Http\Livewire\Tests;
-use App\Http\Controllers\Auth\SocialController;
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\Auth\VerificationEmail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,6 +19,8 @@ Route::get('logout', function(){
 	Auth::logout();
 	return redirect('/');
 });
+
+Route::get('word', [WordController::class, 'index']);
 
 Route::middleware('guest')->group(function () {
 	Route::get('/', function(){
