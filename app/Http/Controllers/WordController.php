@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
@@ -10,26 +12,32 @@ use PhpOffice\PhpWord\Shared\ZipArchive;
 
 class WordController extends Controller
 {
-	public function index()
+	public function index($lesson_id, $filename)
 	{
-	   $filename = "python.docx";
+		$lesson = auth()->user()->lessons()->findOrFail($lesson_id);
 		$this->docxToHtml($filename);
-		return dd( $this->htmlToArray($filename) );
-
+		foreach($this->htmlToArray($filename) as $test){
+			$lesson->questions()
+				->create($test['question'])
+				->answers()
+				->createMany($test['answers']);
+		}
+		Storage::delete($filename);
+		Storage::delete($filename.'.html');
 	}
 
 	private function docxToHtml($filename)
 	{
-		$file = public_path($filename);
-		$phpWord = IOFactory::load($file);
-		$phpWord->save($file.'.html', 'HTML');
+		$file = Storage::path($filename);
+		IOFactory::load($file)->save($file.'.html', 'HTML');
 	}
 
 	private function htmlToArray($filename)
 	{
-		$myfile = fopen($filename.'.html', "r+");
+		// $myfile = Storage::get($filename.'.html');
+		$myfile = Storage::readStream($filename.'.html');
 		while (!feof($myfile)) {
-			$buffer = fgets($myfile, 4096);
+			$buffer = fgets($myfile);
 			if( strpos($buffer, '<p') !== false ){
 				$buffer = str_replace('&nbsp;', '', $buffer);
 				$mas[] = trim( strip_tags($buffer) );
@@ -40,32 +48,45 @@ class WordController extends Controller
 
 	private function getFilterText($text)
 	{
-		$test = [];
+		$tests = [];
 		for( $i = 0; $i < count($text); $i++ ){
-			if( preg_match("/[0-9]\)/s", substr($text[$i], 0, 3)) ){
-				$test[] = [
-					'question' => $text[$i],
-					'answer1' => [
-						'answer1' => $text[$i+1],
-						'status' => true,
+			if( preg_match('/[0-9]+[.)]/', $text[$i]) ){
+				yield [
+					'question' => [
+						'title' => $this->getFilterQuestion($text[$i])
 					],
-					'answer2' => [
-						'answer2' => $text[$i+2],
-					],
-					'answer3' => [
-						'answer3' => $text[$i+3],
-					],
-					'answer4' => [
-						'answer4' => $text[$i+4],
-					],
-					'answer5' => [
-						'answer5' => $text[$i+5],
+					'answers' => [
+						[
+							'title' => $this->getFilterAnswer($text[++$i]),
+							'status' => true,
+						],
+						[
+							'title' => $this->getFilterAnswer($text[++$i]),
+						],
+						[
+							'title' => $this->getFilterAnswer($text[++$i]),
+						],
+						[
+							'title' => $this->getFilterAnswer($text[++$i]),
+						],
+						[
+							'title' => $this->getFilterAnswer($text[++$i]),
+						]
 					]
 				];
 			}
 		}
-		dd($test);
-		return $text;
 	}
+
+	private function getFilterAnswer($text)
+	{
+		return trim( preg_replace('/[a-fA-Fа-еА-Е]+[.)]/', '', $text) );
+	}
+
+	private function getFilterQuestion($text)
+	{
+		return trim( preg_replace('/[0-9]+[.)]/', '', $text) );
+	}
+
 
 }

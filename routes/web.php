@@ -20,8 +20,6 @@ Route::get('logout', function(){
 	return redirect('/');
 });
 
-Route::get('word', [WordController::class, 'index']);
-
 Route::middleware('guest')->group(function () {
 	Route::get('/', function(){
 		return view('welcome');
