@@ -25,6 +25,36 @@
  		</x-test-grid-text>
  	</x-slot>
 
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2 text-right">
+      <x-jet-button wire:click="$toggle('modal')" wire:loading.attr="disabled">
+      	Добавить теста из файла word
+      </x-jet-button>
+  </div>
+
+  <x-jet-dialog-modal wire:model="modal">
+    <x-slot name="title">
+      Добавить теста из файла word
+    </x-slot>
+
+    <x-slot name="content">
+      <div>
+        <x-jet-label for="file" value="{{ __('Файл *docx, *doc') }}" />
+        <input wire:model="file" id="file" type="file" required>
+        <x-jet-input-error for="file" class="mt-2" />
+      </div>
+    </x-slot>
+
+    <x-slot name="footer">
+      <x-jet-secondary-button wire:click="$toggle('modal')" wire:loading.attr="disabled">
+        Отмена
+      </x-jet-secondary-button>
+
+      <x-jet-button class="ml-2" wire:click="saveWord" type="button" wire:loading.attr="disabled">
+        Создать
+      </x-jet-button>
+    </x-slot>
+  </x-jet-dialog-modal>
+
  	<form wire:submit.prevent="save">
 
  		<div class="px-3 pt-3 pb-1 sm:px-5">
