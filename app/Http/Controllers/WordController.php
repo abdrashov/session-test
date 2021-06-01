@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
+use App\Models\Question;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -17,11 +20,20 @@ class WordController extends Controller
 		$lesson = auth()->user()->lessons()->findOrFail($lesson_id);
 		$this->docxToHtml($filename);
 		foreach($this->htmlToArray($filename) as $test){
-			$lesson->questions()
-				->create($test['question'])
-				->answers()
-				->createMany($test['answers']);
+			$questions[] = $test['question'];
+			$answers[] = $test['answers'];
 		}
+		if (count($questions) != count($answers)) {
+			throw new Exception("Error Processing", 1);
+		}
+		$lesson->questions()->createMany($questions);
+		Answer::createMany($answers);
+
+		// $lesson->questions()
+		// 	->create($test['question'])
+		// 	->answers()
+		// 	->createMany($test['answers']);
+
 		Storage::delete($filename);
 		Storage::delete($filename.'.html');
 	}
@@ -49,8 +61,11 @@ class WordController extends Controller
 	private function getFilterText($text)
 	{
 		$tests = [];
+		$question_id = 0;
+		$question_count = Question::count();
 		for( $i = 0; $i < count($text); $i++ ){
 			if( preg_match('/[0-9]+[.)]/', $text[$i]) ){
+				$question_id++;
 				yield [
 					'question' => [
 						'title' => $this->getFilterQuestion($text[$i])
@@ -58,19 +73,24 @@ class WordController extends Controller
 					'answers' => [
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
+							'question_id' => $question_id + $question_count,
 							'status' => true,
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
+							'question_id' => $question_id + $question_count,
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
+							'question_id' => $question_id + $question_count,
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
+							'question_id' => $question_id + $question_count,
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
+							'question_id' => $question_id + $question_count,
 						]
 					]
 				];
