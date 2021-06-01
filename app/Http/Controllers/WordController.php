@@ -24,7 +24,7 @@ class WordController extends Controller
 			$questions[] = $test['question'];
 			$answers = array_merge($answers, $test['answers']);
 		}
-		if (count($questions) != count($answers)) {
+		if (count($questions) * 5 != count($answers)) {
 			throw new Exception("Error Processing", 1);
 		}
 		$lesson->questions()->createMany($questions);
