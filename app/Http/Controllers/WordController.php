@@ -28,7 +28,7 @@ class WordController extends Controller
 			throw new Exception("Error Processing", 1);
 		}
 		$lesson->questions()->createMany($questions);
-		Answer::createMany($answers);
+		Answer::create($answers);
 
 		// $lesson->questions()
 		// 	->create($test['question'])
