@@ -17,11 +17,12 @@ class WordController extends Controller
 {
 	public function index($lesson_id, $filename)
 	{
+		$answers = [];
 		$lesson = auth()->user()->lessons()->findOrFail($lesson_id);
 		$this->docxToHtml($filename);
 		foreach($this->htmlToArray($filename) as $test){
 			$questions[] = $test['question'];
-			$answers[] = $test['answers'];
+			$answers = array_merge($answers, $test['answers']);
 		}
 		if (count($questions) != count($answers)) {
 			throw new Exception("Error Processing", 1);
