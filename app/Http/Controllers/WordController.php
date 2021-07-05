@@ -21,6 +21,7 @@ class WordController extends Controller
 		$lesson = auth()->user()->lessons()->findOrFail($lesson_id);
 		$this->docxToHtml($filename);
 		foreach($this->htmlToArray($filename) as $test){
+			dd($test);
 			$questions[] = $test['question'];
 			$answers = array_merge($answers, $test['answers']);
 		}
