@@ -21,6 +21,9 @@ class WordController extends Controller
 		$lesson = auth()->user()->lessons()->findOrFail($lesson_id);
 		$this->docxToHtml($filename);
 		foreach($this->htmlToArray($filename) as $test){
+			if( $loop->iteration = 49 ) {
+				$lesson->update(['status' => true]);
+			}
 			try {
 				$lesson->questions()->create($test['question'])->answers()->createMany($test['answers']);
 			} catch (Exception $e) {
