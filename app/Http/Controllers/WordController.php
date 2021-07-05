@@ -28,8 +28,7 @@ class WordController extends Controller
 			throw new Exception("Error Processing", 1);
 		}
 		$lesson->questions()->createMany($questions);
-		Answer::create($answers);
-
+		Answer::insert($answers);
 		// $lesson->questions()
 		// 	->create($test['question'])
 		// 	->answers()
@@ -64,6 +63,7 @@ class WordController extends Controller
 		$tests = [];
 		$question_id = 0;
 		$question_count = Question::count();
+		$create_date = now();
 		for( $i = 0; $i < count($text); $i++ ){
 			if( preg_match('/[0-9]+[.)]/', $text[$i]) ){
 				$question_id++;
@@ -76,22 +76,32 @@ class WordController extends Controller
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
 							'status' => true,
+							'created_at' => $create_date,
+							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'created_at' => $create_date,
+							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'created_at' => $create_date,
+							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'created_at' => $create_date,
+							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'created_at' => $create_date,
+							'updated_at' => $create_date
 						]
 					]
 				];
