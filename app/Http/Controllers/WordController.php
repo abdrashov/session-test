@@ -24,9 +24,8 @@ class WordController extends Controller
 			try {
 				$lesson->questions()->create($test['question'])->answers()->createMany($test['answers']);
 			} catch (Exception $e) {
-				dd($test, $e);
+				continue;
 			}
-
 			// $questions[] = $test['question'];
 			// $answers = array_merge($answers, $test['answers']);
 		}
