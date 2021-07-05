@@ -27,14 +27,9 @@ class WordController extends Controller
 		if (count($questions) * 5 != count($answers)) {
 			throw new Exception("Error Processing", 1);
 		}
+
 		$lesson->questions()->createMany($questions);
-		foreach (array_chunk($answers, 50) as $answer100) {
-		    Answer::insert($answer100);
-		}
-		// $lesson->questions()
-		// 	->create($test['question'])
-		// 	->answers()
-		// 	->createMany($test['answers']);
+		Answer::insert($answers);
 
 		Storage::delete($filename);
 		Storage::delete($filename.'.html');
