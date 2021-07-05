@@ -28,7 +28,9 @@ class WordController extends Controller
 			throw new Exception("Error Processing", 1);
 		}
 		$lesson->questions()->createMany($questions);
-		Answer::insert($answers);
+		foreach (array_chunk($answers, 50) as $answer100) {
+		    Answer::insert($answer100);
+		}
 		// $lesson->questions()
 		// 	->create($test['question'])
 		// 	->answers()
@@ -82,24 +84,28 @@ class WordController extends Controller
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
 							'question_id' => $question_id + $question_count,
+							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						]
