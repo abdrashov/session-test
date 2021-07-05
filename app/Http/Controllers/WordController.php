@@ -21,16 +21,18 @@ class WordController extends Controller
 		$lesson = auth()->user()->lessons()->findOrFail($lesson_id);
 		$this->docxToHtml($filename);
 		foreach($this->htmlToArray($filename) as $test){
-			dd($test);
-			$questions[] = $test['question'];
-			$answers = array_merge($answers, $test['answers']);
+
+			$lesson->questions()->create($test['question'])->answers()->createMany($test['answers']);
+
+			// $questions[] = $test['question'];
+			// $answers = array_merge($answers, $test['answers']);
 		}
 		if (count($questions) * 5 != count($answers)) {
 			throw new Exception("Error Processing", 1);
 		}
 
-		$lesson->questions()->createMany($questions);
-		Answer::insert($answers);
+		// $lesson->questions()->createMany($questions);
+		// Answer::insert($answers);
 
 		Storage::delete($filename);
 		Storage::delete($filename.'.html');
@@ -72,35 +74,35 @@ class WordController extends Controller
 					'answers' => [
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
-							'question_id' => $question_id + $question_count,
+							//'question_id' => $question_id + $question_count,
 							'status' => true,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
-							'question_id' => $question_id + $question_count,
+							//'question_id' => $question_id + $question_count,
 							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
-							'question_id' => $question_id + $question_count,
+							//'question_id' => $question_id + $question_count,
 							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
-							'question_id' => $question_id + $question_count,
+							//'question_id' => $question_id + $question_count,
 							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
 						],
 						[
 							'title' => $this->getFilterAnswer($text[++$i]),
-							'question_id' => $question_id + $question_count,
+							//'question_id' => $question_id + $question_count,
 							'status' => false,
 							'created_at' => $create_date,
 							'updated_at' => $create_date
