@@ -29,9 +29,9 @@ class WordController extends Controller
 			// $questions[] = $test['question'];
 			// $answers = array_merge($answers, $test['answers']);
 		}
-		if (count($questions) * 5 != count($answers)) {
-			throw new Exception("Error Processing", 1);
-		}
+		// if (count($questions) * 5 != count($answers)) {
+		// 	throw new Exception("Error Processing", 1);
+		// }
 
 		// $lesson->questions()->createMany($questions);
 		// Answer::insert($answers);
