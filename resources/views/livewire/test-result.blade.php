@@ -58,9 +58,11 @@
 				{{ $test->answer4->title }}
 			</x-test-answer>
 			
-			<x-test-answer class="{{ $test->getClassAndRightAnswerOrWrongAnswer($test->answer5_id) }}">
-				{{ $test->answer5->title }}
-			</x-test-answer>
+			@isset($test->answer5)
+				<x-test-answer class="{{ $test->getClassAndRightAnswerOrWrongAnswer($test->answer5_id) }}">
+					{{ $test->answer5->title }}
+				</x-test-answer>
+			@endisset
 		</x-test-card>
 	@endforeach
 
