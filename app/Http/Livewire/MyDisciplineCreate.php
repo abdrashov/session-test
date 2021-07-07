@@ -70,7 +70,7 @@ class MyDisciplineCreate extends Component
 
 	private function byCountTest()
 	{
-		if( $this->lesson->questions->count() > 49 )
+		if( $this->lesson->questions->count() >= 25 )
 			$this->lesson->update(['status' => true]);
 	}
 
