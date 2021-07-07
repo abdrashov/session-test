@@ -49,9 +49,11 @@
 				{{ $test->answer4->title }}
 			</x-input-radio>
 
+			@isset($test->answer5)
 			<x-input-radio answer="{{ $test->answer5->id }}" name="test" wire:model.defer="answer_id">
 				{{ $test->answer5->title }}
 			</x-input-radio>
+			@endisset
 		</div>
 		<div class="px-3 py-4 sm:px-6 text-right">
 			<x-jet-button>

@@ -99,7 +99,7 @@ class Rating extends Model
    */
   private function storeAnswer($question)
   {
-    $answers = $question->answers()->inRandomOrder()->limit(5)->get()->toArray();
+    $answers = $question->answers()->inRandomOrder()->get()->toArray();
     foreach( $answers as $key => $answer ){
       if( (int) $answer['status'] == 1 )
         yield [

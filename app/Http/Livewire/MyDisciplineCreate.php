@@ -36,11 +36,11 @@ class MyDisciplineCreate extends Component
 	{
 		$this->validate([
 			'questions.title' => 'required|string|max:512',
-			'answers.0.title' => 'required|string|max:191',
-			'answers.1.title' => 'required|string|max:191',
-			'answers.2.title' => 'required|string|max:191',
-			'answers.3.title' => 'required|string|max:191',
-			'answers.4.title' => 'string|max:191',
+			'answers.0.title' => 'required|string|max:512',
+			'answers.1.title' => 'required|string|max:512',
+			'answers.2.title' => 'required|string|max:512',
+			'answers.3.title' => 'required|string|max:512',
+			'answers.4.title' => 'string|max:512',
 		]);
 
 		$answers = $this->answers;
