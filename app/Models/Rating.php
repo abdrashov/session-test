@@ -83,7 +83,7 @@ class Rating extends Model
    */
   private function storeQuestion($test_count) 
   {
-    $questions = $this->questions()->inRandomOrder()->limit($test_count)->get();
+    $questions = $this->questions()->has('answers', '>=', 4)->inRandomOrder()->limit($test_count)->get();
     foreach( $questions as $question ){
       $answers = [];
       foreach( $this->storeAnswer($question) as $answer ){
