@@ -40,7 +40,7 @@ class MyDisciplineCreate extends Component
 			'answers.1.title' => 'required|string|max:191',
 			'answers.2.title' => 'required|string|max:191',
 			'answers.3.title' => 'required|string|max:191',
-			'answers.4.title' => 'required|string|max:191',
+			'answers.4.title' => 'string|max:191',
 		]);
 
 		$answers = $this->answers;
